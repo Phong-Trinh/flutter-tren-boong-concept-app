@@ -60,7 +60,6 @@ class _Login_ScreenState extends State<Login_Screen> {
                                       vertical: 20, horizontal: 20),
                                   border: OutlineInputBorder(),
                                   hintText: ("Nhập số điện thoại"),
-                                  //errorText: (""),
                                 ),
                                 // The validator receives the text that the user has entered.
                                 validator: (value) {
