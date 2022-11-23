@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/phone_number.dart';
 import 'package:tren_boong_concept/domain/bloc/authentication/authentication_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../domain/bloc/authentication/authentication_event.dart';
@@ -13,7 +16,7 @@ class Login_Screen extends StatefulWidget {
 }
 
 class _Login_ScreenState extends State<Login_Screen> {
-  String phoneNumb = '';
+  PhoneNumber? phoneNumb;
   bool isChecked = false;
   final _formKey = GlobalKey<FormState>();
   @override
@@ -45,30 +48,31 @@ class _Login_ScreenState extends State<Login_Screen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                              width: double.infinity,
-                              child: TextFormField(
-                                onChanged: (text) {
-                                  this.phoneNumb = text;
-                                },
-                                keyboardType: TextInputType.number,
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly
-                                ],
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 20),
-                                  border: OutlineInputBorder(),
-                                  hintText: ("Nhập số điện thoại"),
-                                ),
-                                // The validator receives the text that the user has entered.
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Vui lòng nhập đúng số điện thoại';
-                                  }
-                                  return null;
-                                },
-                              )),
+                          // New: replace TextField to IntlPhoneField to insert Country phoneNumber
+                          IntlPhoneField(
+                            onChanged: (text) {
+                              this.phoneNumb = text;
+                              print(phoneNumb);
+                            },
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            initialCountryCode: 'VN',
+                            decoration: const InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 20, horizontal: 20),
+                              border: OutlineInputBorder(),
+                              hintText: ("Nhập số điện thoại"),
+                            ),
+                            // The validator receives the text that the user has entered.
+                            validator: (value) {
+                              if (value == null) {
+                                return 'Vui lòng nhập đúng số điện thoại';
+                              }
+                              return null;
+                            },
+                          ),
                           Padding(
                               padding: const EdgeInsets.fromLTRB(0, 25, 0, 10),
                               child: ElevatedButton(
@@ -80,7 +84,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                                   onPressed: () {
                                     if (_formKey.currentState!.validate()) {
                                       context.read<AuthenticationBloc>().add(
-                                          LoginByPhoneNumberEvent(phoneNumb));
+                                          LoginByPhoneNumberEvent(phoneNumb!));
                                     }
                                   },
                                   child: Text("Next"))),
@@ -124,22 +128,27 @@ class _Login_ScreenState extends State<Login_Screen> {
 
               ///button Google Sign
               Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: Container(
-                  width: double.infinity,
-                  child: OutlinedButton.icon(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.android,
-                      size: 24,
+                  padding: const EdgeInsets.only(bottom: 20.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size.fromHeight(35), // NEW
+                      ),
+                      onPressed: () {
+                        //  AuthService().signInWithGoogle();
+                      },
+                      icon: Icon(
+                        FontAwesomeIcons.google,
+                        color: Colors.red,
+                        size: 24,
+                      ),
+                      label: Text(
+                        "Login With Google",
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
-                    label: Text(
-                      "Login With Google",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ),
-                ),
-              )
+                  ))
             ],
           ),
         ));

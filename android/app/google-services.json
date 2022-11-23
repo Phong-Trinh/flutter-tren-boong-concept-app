@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1026236227385",
+    "project_id": "trenboong-concept",
+    "storage_bucket": "trenboong-concept.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026236227385:android:994c8c63f70ac23c86d2e8",
+        "android_client_info": {
+          "package_name": "com.example.tren_boong_concept"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1026236227385-8o8fjnpnulfg3r754rdoh9sksikv3ddu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tren_boong_concept",
+            "certificate_hash": "9675e87d66ac3483b55fc8fa41e21783412fea68"
+          }
+        },
+        {
+          "client_id": "1026236227385-mfa4u5k0juqic2288qoqrjullnkad8n4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcXPnoRk9cJ_Rd3hB3TKHD25MZgccvoMo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1026236227385-mfa4u5k0juqic2288qoqrjullnkad8n4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

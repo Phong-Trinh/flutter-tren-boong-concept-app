@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,6 +15,8 @@ void main() {
     final license = await rootBundle.loadString('lato_fonts/OFL.txt');
     yield LicenseEntryWithLineBreaks(['lato_fonts'], license);
   });
+  // WidgetsFlutterBinding.ensureInitialized();
+  // Firebase.initializeApp();
   runApp(const MyApp());
 }
 

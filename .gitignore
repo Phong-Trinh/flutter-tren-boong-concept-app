@@ -31,7 +31,10 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-
+git branch --delete
+# google login lam chua
+/lib/features/authen/sign_in/google_button.dart
+/lib/domain/auth_service/auth_service.dart
 # Symbolication related
 app.*.symbols
 

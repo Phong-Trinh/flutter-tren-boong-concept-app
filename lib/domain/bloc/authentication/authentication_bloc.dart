@@ -7,8 +7,7 @@ import 'authentication_state.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  //pass value to state to reponse to UI
-
+  //pass value to state to reponse to UIgit 
   AuthenticationBloc({required UserRepository userRepository})
       : _userRepository = userRepository,
         super(LoginInitialState()) {
@@ -21,7 +20,7 @@ class AuthenticationBloc
   Future<void> fetchUserEvent(
       LoginByPhoneNumberEvent event, Emitter<AuthenticationState> state) async {
     await Future.delayed(const Duration(seconds: 1));
-    var user = await _userRepository.fetchUserByPhoneNumber(event.phoneNumb);
+    var user = await _userRepository.fetchUserByPhoneNumber(event.phoneNumb.number);
     try {
       if (user != null) {
         print('heheh');

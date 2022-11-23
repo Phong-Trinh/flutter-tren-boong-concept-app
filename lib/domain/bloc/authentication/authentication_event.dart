@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:intl_phone_field/phone_number.dart';
 
 abstract class AuthenticationEvent extends Equatable {
   @override
@@ -8,7 +9,7 @@ abstract class AuthenticationEvent extends Equatable {
 class CheckLoginEvent extends AuthenticationEvent {}
 
 class LoginByPhoneNumberEvent extends AuthenticationEvent {
-  final String phoneNumb;
+  final PhoneNumber phoneNumb;
 
   LoginByPhoneNumberEvent(this.phoneNumb);
 }
