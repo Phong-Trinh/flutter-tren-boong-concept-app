@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../utility/formater.dart';
 import '../../../utility/save_data.dart';
 import 'otp_form.dart';
