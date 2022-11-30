@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tren_boong_concept">
+    package="micro7.tren_boong_concept">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="tren_boong_concept"
+        android:label="Tren Boong"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

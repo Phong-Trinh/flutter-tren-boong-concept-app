@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/entity/coupon_entity.dart';
-import '../../utility/order_format.dart';
+import '../../utility/formater.dart';
 import 'promotion_date.dart';
 import 'promotion_infor.dart';
 
@@ -29,8 +29,8 @@ class PromotionDetail extends StatelessWidget {
           PromotionInfor(
               title: coupon.title,
               details: [
-                'Giảm ${OrderFormat.vndFormat(coupon.couponPrice)} cho đồ uống bất kỳ',
-                'Đặt tối thiểu ${OrderFormat.vndFormat(coupon.minimumPrice)}'
+                'Giảm ${Formater.vndFormat(coupon.couponPrice)} cho đồ uống bất kỳ',
+                'Đặt tối thiểu ${Formater.vndFormat(coupon.minimumPrice)}'
               ],
               textColor: textColor),
           Divider(height: 10, color: borderColor, thickness: 0.4),

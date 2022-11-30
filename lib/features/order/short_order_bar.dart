@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/bloc/order/order_bloc.dart';
 import '../../domain/bloc/order/order_state.dart';
 import '../../domain/entity/order_entity.dart';
-import '../../utility/order_format.dart';
+import '../../utility/formater.dart';
 import 'order_detail_price.dart';
 import 'order_list.dart';
 import 'order_coupon.dart';
@@ -24,7 +24,7 @@ class ShortOrderBarState extends State<ShortOrderBar> {
         value: context.read<OrderBloc>(),
         child: BlocBuilder<OrderBloc, OrderState>(
             builder: (BuildContext context, OrderState state) {
-          if (state is AddProductItemSuccessState) {
+          if (state is OrderUpdateSuccess) {
             return GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -46,7 +46,7 @@ class ShortOrderBarState extends State<ShortOrderBar> {
                                 coupon: context.read<OrderBloc>().order.coupon),
                             const SizedBox(height: 5),
                             OrderList(
-                                orderList: OrderFormat.getStringListOrderName(
+                                orderList: Formater.getStringListOrderName(
                                     context.read<OrderBloc>().order))
                           ])),
                       const SizedBox(width: 12),
@@ -57,8 +57,8 @@ class ShortOrderBarState extends State<ShortOrderBar> {
                                     orderBloc: context.read<OrderBloc>())));
                           },
                           child: OrderDetailPrice(
-                              itemCount: OrderFormat.getTotalItem(order),
-                              totalPrice: OrderFormat.getTotalPrice(order))),
+                              itemCount: Formater.getTotalItem(order),
+                              totalPrice: Formater.getTotalPrice(order))),
                       const SizedBox(width: 15)
                     ])));
           }

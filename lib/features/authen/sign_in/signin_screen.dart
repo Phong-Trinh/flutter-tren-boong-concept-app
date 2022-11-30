@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tren_boong_concept/domain/bloc/authentication/authentication_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../domain/bloc/authentication/authentication_event.dart';
+import '../../../utility/save_data.dart';
+import '../otp/otp_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -47,6 +49,7 @@ class LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                             width: double.infinity,
                             child: TextFormField(
+                              style: TextStyle(fontSize: 18),
                               onChanged: (text) {
                                 phoneNumb = text;
                               },
@@ -58,12 +61,18 @@ class LoginScreenState extends State<LoginScreen> {
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 20, horizontal: 20),
                                 border: OutlineInputBorder(),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black87),
+                                ),
                                 hintText: ("Nhập số điện thoại"),
                                 //errorText: (""),
                               ),
                               // The validator receives the text that the user has entered.
                               validator: (value) {
-                                if (value == null || value.isEmpty) {
+                                if (value == null ||
+                                    value.isEmpty ||
+                                    value.length < 10 ||
+                                    !value.startsWith('0')) {
                                   return 'Vui lòng nhập đúng số điện thoại';
                                 }
                                 return null;
@@ -73,15 +82,22 @@ class LoginScreenState extends State<LoginScreen> {
                             padding: const EdgeInsets.fromLTRB(0, 25, 0, 10),
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      Color.fromARGB(123, 127, 59, 36),
                                   minimumSize: const Size.fromHeight(50), // NEW
                                 ),
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
-                                    context.read<AuthenticationBloc>().add(
-                                        LoginByPhoneNumberEvent(phoneNumb));
+                                    SaveData.userPhoneNumb = phoneNumb;
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const OtpScreen()),
+                                    );
                                   }
                                 },
-                                child: const Text("Next"))),
+                                child: const Text("Tiếp theo"))),
                       ],
                     ),
                   ),

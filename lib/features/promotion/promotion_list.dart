@@ -6,7 +6,7 @@ import '../../domain/entity/coupon_entity.dart';
 import 'promotion_detail.dart';
 
 class PromotionList extends StatefulWidget {
-  PromotionList({super.key, required this.coupons});
+  const PromotionList({super.key, required this.coupons});
   final List<CouponEntity> coupons;
 
   @override

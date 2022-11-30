@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/bloc/order/order_bloc.dart';
 import '../../domain/bloc/order/order_event.dart';
 import '../../domain/entity/order_entity.dart';
-import '../../utility/order_format.dart';
+import '../../utility/formater.dart';
 import 'order_result.dart';
 
 class ConfirmOrder extends StatelessWidget {
@@ -68,6 +68,6 @@ class ConfirmOrder extends StatelessWidget {
   }
 
   String generateTotalPrice(OrderEntity order) {
-    return OrderFormat.vndFormat(order.totalPrice);
+    return Formater.vndFormat(order.totalPrice);
   }
 }

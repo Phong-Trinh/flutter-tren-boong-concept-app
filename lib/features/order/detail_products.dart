@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../domain/entity/order_detail_entity.dart';
-import '../../utility/order_format.dart';
+import '../../utility/formater.dart';
 
 class ListDetailProduct extends StatelessWidget {
   final List<OrderDetailEntity> details;
@@ -90,6 +90,6 @@ class DetailInforProduct extends StatelessWidget {
   }
 
   String generatePrice(OrderDetailEntity item) {
-    return OrderFormat.vndFormat(item.price * item.quantity);
+    return Formater.vndFormat(item.price * item.quantity);
   }
 }

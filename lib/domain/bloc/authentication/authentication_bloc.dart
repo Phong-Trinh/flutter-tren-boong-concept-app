@@ -18,6 +18,8 @@ class AuthenticationBloc
 
   final UserRepository _userRepository;
 
+  
+
   Future<void> fetchUserEvent(
       LoginByPhoneNumberEvent event, Emitter<AuthenticationState> state) async {
     emit(LoginLoadingState());

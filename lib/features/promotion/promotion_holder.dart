@@ -21,12 +21,13 @@ class PromotionHolderState extends State<PromotionHolder> {
     return RepositoryProvider(
         create: (context) => CouponRepository(),
         child: BlocProvider(
-            create: (context) =>
-                CouponBloc(couponRepository: context.read<CouponRepository>())
-                  ..add(GetUserCoupon(SaveData.userId)),
+            create: (context) => CouponBloc(
+                couponRepository: context.read<CouponRepository>(),
+                selectedCouponId: SaveData.selectedCouponId)
+              ..add(GetUserCoupon(SaveData.userId)),
             child: BlocBuilder<CouponBloc, CouponState>(
                 builder: (BuildContext context, CouponState state) {
-              if (state is CouponLoadSuccess) {
+              if (state is CouponUpdateSuccess) {
                 return PromotionList(coupons: state.coupons);
               }
               return ShimmerPromotion();

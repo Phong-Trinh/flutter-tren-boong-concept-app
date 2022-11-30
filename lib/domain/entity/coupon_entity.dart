@@ -1,5 +1,5 @@
 class CouponEntity {
-  final String id;
+  final int id;
   final String title;
   final int minimumPrice;
   final int couponPrice;
