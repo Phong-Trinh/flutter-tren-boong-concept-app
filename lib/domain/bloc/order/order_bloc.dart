@@ -48,13 +48,10 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     on<EmitOrder>((event, emit) async {
       //do and emit something
       try {
-        //here wait for paying the bill
         await Future.delayed(const Duration(seconds: 2));
         await _orderrepository.createReceipt(order);
-        emit(OrderSuccessState());
-      } catch (e) {
-        emit(OrderFailState());
-      }
+        //here wait for paying the bill
+      } catch (e) {}
     });
 
     on<CancelOrder>((event, emit) async {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../domain/bloc/order/order_bloc.dart';
 import 'confirm_order.dart';
 import 'detail_applied_coupon.dart';
+import 'detail_paymet_method.dart';
 import 'detail_products.dart';
 import 'total_price.dart';
 
@@ -29,7 +30,10 @@ class OrderDetail extends StatelessWidget {
         SizedBox(height: 25),
         DetailAppliedCoupon(coupon: orderBloc.order.coupon),
         SizedBox(height: 25),
+        DetailAPaymentMethod(),
+        SizedBox(height: 25),
         TotalPrice(order: orderBloc.order),
+        SizedBox(height: 50),
       ]),
     );
   }

@@ -34,7 +34,12 @@ class PromotionDetail extends StatelessWidget {
               ],
               textColor: textColor),
           Divider(height: 10, color: borderColor, thickness: 0.4),
-          PromotionDate(textColor: textColor)
+          PromotionDate(
+              textColor: textColor,
+              date: isSelected ? 'Đã chọn' : 'Khuyến mãi có hạn',
+              icon: isSelected
+                  ? Icons.check_circle_rounded
+                  : Icons.access_time_filled_rounded)
         ]));
   }
 }

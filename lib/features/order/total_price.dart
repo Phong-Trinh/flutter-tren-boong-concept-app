@@ -27,8 +27,9 @@ class TotalPrice extends StatelessWidget {
                     : '-${Formater.vndFormat(0)}'),
             PayPrice(
                 title: 'Số tiền thanh toán',
-                price: Formater.vndFormat(
-                    order.totalPrice - order.coupon!.couponPrice))
+                price: Formater.vndFormat(order.coupon != null
+                    ? order.totalPrice - order.coupon!.couponPrice
+                    : order.totalPrice))
           ],
         ));
   }

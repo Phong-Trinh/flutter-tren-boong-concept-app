@@ -46,8 +46,10 @@ class ShortOrderBarState extends State<ShortOrderBar> {
                                 coupon: context.read<OrderBloc>().order.coupon),
                             const SizedBox(height: 5),
                             OrderList(
-                                orderList: Formater.getStringListOrderName(
-                                    context.read<OrderBloc>().order))
+                                orderList: order.orderDetails.isEmpty
+                                    ? 'Chưa có sản phẩm'
+                                    : Formater.getStringListOrderName(
+                                        context.read<OrderBloc>().order))
                           ])),
                       const SizedBox(width: 12),
                       TextButton(

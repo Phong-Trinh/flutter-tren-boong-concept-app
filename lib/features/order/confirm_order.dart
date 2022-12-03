@@ -40,9 +40,6 @@ class ConfirmOrder extends StatelessWidget {
                 onPressed: () {
                   if ((orderBloc.order.orderDetails.isNotEmpty)) {
                     orderBloc.add(EmitOrder());
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context1) =>
-                            OrderResult(orderBloc: orderBloc)));
                   }
                 },
                 child: Container(

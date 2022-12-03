@@ -1,14 +1,18 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tren_boong_concept/domain/bloc/authentication/authentication_state.dart';
+import 'package:uni_links/uni_links.dart';
 import 'domain/bloc/authentication/authentication_bloc.dart';
 import 'domain/bloc/authentication/authentication_event.dart';
 import 'features/authen/sign_in/signin_screen.dart';
 import 'features/home/home.dart';
 import 'features/loading/loading_screen.dart';
+import 'features/order/order_result.dart';
 import 'infrastructure/repository/user_repository.dart';
+import 'utility/save_data.dart';
 
 void main() {
   LicenseRegistry.addLicense(() async* {
@@ -26,6 +30,51 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  Uri? _initialUri;
+  Uri? _latestUri;
+  Object? _err;
+  StreamSubscription? _sub;
+  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    _handleIncomingLinks();
+  }
+
+  void _handleIncomingLinks() {
+    if (!kIsWeb) {
+      // It will handle app links while the app is already started - be it in
+      // the foreground or in the background.
+      _sub = uriLinkStream.listen((Uri? uri) {
+        if (!mounted) return;
+        if (uri!.queryParameters['resultCode'].toString() == '0') {
+          print(uri!.queryParameters['resultCode'].toString());
+          SaveData.isPaymentSuccess = true;
+          navigatorKey.currentState
+              ?.push(MaterialPageRoute(builder: (context1) => OrderResult()));
+        } else {
+          SaveData.isPaymentSuccess = false;
+        }
+        setState(() {
+          _latestUri = uri;
+          _err = null;
+        });
+      }, onError: (Object err) {
+        if (!mounted) return;
+        print('got err: $err');
+        setState(() {
+          _latestUri = null;
+          if (err is FormatException) {
+            _err = err;
+          } else {
+            _err = null;
+          }
+        });
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
@@ -43,9 +92,10 @@ class _MyAppState extends State<MyApp> {
                   );
                 }
                 if (state is AuthenticatedState) {
-                  return const MaterialApp(
+                  return MaterialApp(
+                    navigatorKey: navigatorKey,
                     debugShowCheckedModeBanner: false,
-                    home: HomePage(),
+                    home: const HomePage(),
                   );
                 }
                 return LoadingScreen();

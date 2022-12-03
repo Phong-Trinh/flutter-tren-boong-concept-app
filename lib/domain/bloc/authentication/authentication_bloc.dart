@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../infrastructure/repository/user_repository.dart';
 import '../../../utility/save_data.dart';
+import '../../entity/user_entity.dart';
 import 'authentication_event.dart';
 import 'authentication_state.dart';
 
@@ -18,8 +19,6 @@ class AuthenticationBloc
 
   final UserRepository _userRepository;
 
-  
-
   Future<void> fetchUserEvent(
       LoginByPhoneNumberEvent event, Emitter<AuthenticationState> state) async {
     emit(LoginLoadingState());
@@ -32,6 +31,10 @@ class AuthenticationBloc
     } catch (e) {
       emit(UnauthenticatedState());
     }
+    //test
+    emit(AuthenticatedState(
+        UserEntity(id: '1', name: 'phong', phoneNumber: '0855556532')));
+    SaveData.userId = '1';
   }
 
   FutureOr<void> checkUserEvent(
