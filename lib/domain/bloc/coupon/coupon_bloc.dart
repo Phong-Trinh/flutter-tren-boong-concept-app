@@ -14,7 +14,7 @@ class CouponBloc extends Bloc<CouponEvent, CouponState> {
       emit(CouponLoadingState());
       await Future.delayed(const Duration(seconds: 1));
       try {
-        var coupons = _couponRepository.fetchCouponsByUser(event.id);
+        var coupons = await _couponRepository.fetchCouponsByUser(event.id);
         emit(CouponUpdateSuccess(coupons));
       } catch (e) {
         emit(CouponLoadFailed());
