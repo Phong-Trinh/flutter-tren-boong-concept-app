@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class ApiConstant {
-  static String baseUrl = 'http://localhost:1337/api';
+  static String baseUrl = 'https://boiling-waters-91078.herokuapp.com/api';
   static String usersEndpoint = '/app-users';
   static String drinkCategoryEndpoint = '/drink-categories';
   static String productsEndpoint = '/products';

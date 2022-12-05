@@ -1,6 +1,5 @@
 import 'dart:convert';
 import '../../domain/entity/coupon_entity.dart';
-import '../../domain/entity/user_entity.dart';
 import 'api_constant.dart';
 import 'package:http/http.dart' as http;
 

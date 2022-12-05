@@ -15,22 +15,11 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
       emit(MenuLoadingState());
       try {
         var products = await _productRepository.getAllProduct();
-        //emit(MenuLoadSuccessState(products));
-
-        //test
-        emit(MenuLoadSuccessState([
-          CategoryProductsEntity(
-              category:
-                  CategoryEntity(id: '1', name: '1123123', imageUrl: '1223'),
-              products: [
-                ProductEntity(id: '1', name: '1', imgUrl: '1223', price: 45000)
-              ])
-        ]));
+        emit(MenuLoadSuccessState(products));
       } catch (e) {
         //do something
-        //emit(MenuLoadFailState());
+        emit(MenuLoadFailState());
       }
-      print('hihihi');
     });
   }
 
