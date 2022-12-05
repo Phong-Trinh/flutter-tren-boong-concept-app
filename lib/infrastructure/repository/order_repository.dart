@@ -1,4 +1,5 @@
 import '../../domain/entity/order_entity.dart';
+import '../remote_source/momo_payment_service.dart';
 import '../remote_source/receipt_detail_service.dart';
 import '../remote_source/receipt_service.dart';
 
@@ -10,10 +11,15 @@ class OrderRepository {
       throw Exception('Create receipt detail exception');
     }
     try {
-      bool checkCreate = await ReceiptService.createReceipt(
+      int? orderId = await ReceiptService.createReceipt(
           order.totalPrice, listId.cast<int>(), int.parse(order.userId));
-      if (checkCreate == false) {
-        throw Exception('Create receipt exception');
+      if (orderId == null) {
+        throw Exception('Create order exception');
+      }
+      bool checkPayment =
+          await MomoPaymentService.createTransaction('1', order.totalPrice);
+      if (checkPayment == false) {
+        throw Exception('Create order exception');
       }
     } catch (e) {
       throw Exception('Create order exception');

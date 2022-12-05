@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/bloc/order/order_bloc.dart';
 import '../../domain/bloc/order/order_event.dart';
 import '../../domain/entity/order_entity.dart';
-import '../../utility/order_format.dart';
+import '../../utility/formater.dart';
 import 'order_result.dart';
 
 class ConfirmOrder extends StatelessWidget {
@@ -13,9 +12,10 @@ class ConfirmOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+        padding:
+            const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
         height: 90,
-        color: Color.fromARGB(255, 247, 132, 32),
+        color: const Color.fromARGB(255, 247, 132, 32),
         child: Row(
           children: [
             Column(
@@ -23,33 +23,32 @@ class ConfirmOrder extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(generateTextTotalItem(orderBloc.order),
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 18,
                         color: Colors.white,
                         fontWeight: FontWeight.w400)),
                 Text(generateTotalPrice(orderBloc.order),
-                    style: TextStyle(
+                    style: const TextStyle(
                         height: 1.6,
                         fontSize: 18,
                         color: Colors.white,
                         fontWeight: FontWeight.w700))
               ],
             ),
-            Spacer(),
+            const Spacer(),
             TextButton(
                 onPressed: () {
-                  orderBloc.add(EmitOrder());
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context1) =>
-                          OrderResult(orderBloc: orderBloc)));
+                  if ((orderBloc.order.orderDetails.isNotEmpty)) {
+                    orderBloc.add(EmitOrder());
+                  }
                 },
                 child: Container(
                     height: 34,
                     width: 100,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(15))),
-                    child: Center(
+                    child: const Center(
                         child: Text('ĐẶT HÀNG',
                             style: TextStyle(
                                 fontSize: 16,
@@ -68,6 +67,6 @@ class ConfirmOrder extends StatelessWidget {
   }
 
   String generateTotalPrice(OrderEntity order) {
-    return OrderFormat.vndFormat(order.totalPrice);
+    return Formater.vndFormat(order.totalPrice);
   }
 }

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
 class PromotionDate extends StatelessWidget {
-  PromotionDate({super.key, required this.textColor});
-  Color textColor;
+  final String date;
+  final IconData icon;
+  final Color textColor;
+  const PromotionDate(
+      {super.key,
+      required this.textColor,
+      required this.date,
+      required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +17,9 @@ class PromotionDate extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(width: 20),
-            Icon(Icons.access_time_filled_rounded, color: textColor),
+            Icon(icon, color: textColor),
             SizedBox(width: 8),
-            Text('Khuyến mãi có hạn',
+            Text(date,
                 style: TextStyle(
                     color: textColor,
                     fontWeight: FontWeight.w700,

@@ -21,10 +21,10 @@ class OrderLoadSuccessState extends OrderState {
 
 class OrderLoadFailState extends OrderState {}
 
-class AddProductItemSuccessState extends OrderState {
+class OrderUpdateSuccess extends OrderState {
   final OrderEntity order;
 
-  AddProductItemSuccessState(this.order);
+  OrderUpdateSuccess(this.order);
 }
 
 class AddProductItemFailState extends OrderState {}

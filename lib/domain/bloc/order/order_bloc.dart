@@ -28,7 +28,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     on<AddProductItem>((event, emit) async {
       try {
         addProduct(event.product);
-        emit(AddProductItemSuccessState(order));
+        emit(OrderUpdateSuccess(order));
       } catch (e) {
         //do something
         emit(AddProductItemFailState());
@@ -41,19 +41,17 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
     on<AddCoupon>((event, emit) async {
       order.coupon = event.coupon;
-      emit(AddProductItemSuccessState(order));
+      SaveData.selectedCouponId = event.coupon.id;
+      emit(OrderUpdateSuccess(order));
     });
 
     on<EmitOrder>((event, emit) async {
       //do and emit something
       try {
-        //here wait for paying the bill
         await Future.delayed(const Duration(seconds: 2));
         await _orderrepository.createReceipt(order);
-        emit(OrderSuccessState());
-      } catch (e) {
-        emit(OrderFailState());
-      }
+        //here wait for paying the bill
+      } catch (e) {}
     });
 
     on<CancelOrder>((event, emit) async {

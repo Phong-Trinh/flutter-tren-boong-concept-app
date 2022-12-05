@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import '../../domain/entity/coupon_entity.dart';
 import '../../domain/entity/order_detail_entity.dart';
 import '../../utility/formater.dart';
 
-class ListDetailProduct extends StatelessWidget {
-  final List<OrderDetailEntity> details;
-  const ListDetailProduct({super.key, required this.details});
+class DetailAppliedCoupon extends StatelessWidget {
+  final CouponEntity? coupon;
+  const DetailAppliedCoupon({super.key, required this.coupon});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class ListDetailProduct extends StatelessWidget {
             const SizedBox(height: 20),
             Row(
               children: [
-                const Text('Sản phẩm đã chọn',
+                const Text('Coupon',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
                 const Spacer(),
@@ -26,13 +27,13 @@ class ListDetailProduct extends StatelessWidget {
                     },
                     child: Container(
                         height: 30,
-                        width: 55,
+                        width: 62,
                         decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 243, 227, 214),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15))),
                         child: const Center(
-                            child: Text('Thêm',
+                            child: Text('Thay đổi',
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Color.fromARGB(255, 212, 93, 3),
@@ -40,22 +41,20 @@ class ListDetailProduct extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 25),
-            details.isEmpty
-                ? Container(
-                    margin: EdgeInsets.only(bottom: 10),
-                    width: double.infinity,
-                    child: const Text('*Không có sản phẩm trong giỏ hàng',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 212, 93, 3),
-                            fontWeight: FontWeight.w500,
-                            height: 2,
-                            fontStyle: FontStyle.italic)))
-                : Container(),
-            for (var item in details)
-              details.indexOf(item) == details.length - 1
-                  ? DetailInforProduct(item: item, isLastItem: false)
-                  : DetailInforProduct(item: item, isLastItem: true)
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Flexible(
+                  child: Container(
+                      child: Text(
+                          coupon != null ? coupon!.title : 'Không áp dụng',
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, height: 2)))),
+              const Spacer(),
+              Text(
+                  '-${Formater.vndFormat(coupon != null ? coupon!.couponPrice : 0)}',
+                  style: const TextStyle(fontSize: 16))
+            ]),
+            const SizedBox(height: 10)
           ],
         ));
   }

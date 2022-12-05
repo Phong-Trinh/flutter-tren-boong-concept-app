@@ -1,10 +1,6 @@
 class SaveData {
   static late String userId;
-  setId(String id) {
-    userId = id;
-  }
-
-  getId() {
-    return userId;
-  }
+  static late String userPhoneNumb;
+  static int selectedCouponId = -1;
+  static bool? isPaymentSuccess = null;
 }

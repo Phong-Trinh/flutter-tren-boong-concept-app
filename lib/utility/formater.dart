@@ -1,7 +1,7 @@
 import '../domain/entity/order_entity.dart';
 import 'package:intl/intl.dart';
 
-class OrderFormat {
+class Formater {
   static final currencyFormatter = NumberFormat('#,##0', 'ID');
   static String getStringListOrderName(OrderEntity order) {
     String listName = '';
@@ -18,6 +18,10 @@ class OrderFormat {
     return '${currencyFormatter.format(numb)}đ';
   }
 
+  static String hidePhoneNumbFormat(String phoneNumb) {
+    return '${phoneNumb.substring(0, 3)} ${phoneNumb.substring(3, 6)} ***';
+  }
+
   static int getTotalItem(OrderEntity order) {
     int count = 0;
     for (var element in order.orderDetails) {
@@ -32,6 +36,6 @@ class OrderFormat {
     for (var element in order.orderDetails) {
       count += element.price * element.quantity;
     }
-    return price = OrderFormat.vndFormat(count);
+    return price = Formater.vndFormat(count);
   }
 }

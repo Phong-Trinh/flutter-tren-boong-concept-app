@@ -4,17 +4,20 @@ import 'api_constant.dart';
 import 'package:http/http.dart' as http;
 
 class ReceiptService {
-  static Future<bool> createReceipt(
+  static Future<int?> createReceipt(
       int total, List<int> listDetailId, int userId) async {
     try {
       var response = await sendPostReceipt(total, listDetailId, userId);
       if (response.statusCode == 200) {
-        return true;
+        Map<String, dynamic> parsed = jsonDecode(response.body);
+        int id = parsed['data']['id'];
+        print(id.toString());
+        return id;
       }
     } catch (e) {
       //print(e.toString());
     }
-    return false;
+    return null;
   }
 
   // static OrderEntity praseUserFromJson(String json) {
