@@ -18,4 +18,9 @@ class AuthenticatedState extends AuthenticationState {
   const AuthenticatedState(this.user);
 }
 
-class UnauthenticatedState extends AuthenticationState {}
+class UnauthenticatedState extends AuthenticationState {
+  final bool isPhoneNumbConfirmed;
+  const UnauthenticatedState(this.isPhoneNumbConfirmed);
+  @override
+  List<Object> get props => [isPhoneNumbConfirmed];
+}

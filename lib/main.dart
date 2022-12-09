@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
       _sub = uriLinkStream.listen((Uri? uri) {
         if (!mounted) return;
         if (uri!.queryParameters['resultCode'].toString() == '0') {
-          print(uri!.queryParameters['resultCode'].toString());
+          print(uri.queryParameters['resultCode'].toString());
           SaveData.isPaymentSuccess = true;
           navigatorKey.currentState
               ?.push(MaterialPageRoute(builder: (context1) => OrderResult()));

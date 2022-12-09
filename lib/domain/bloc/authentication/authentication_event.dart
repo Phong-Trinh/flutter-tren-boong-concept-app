@@ -9,6 +9,11 @@ class CheckLoginEvent extends AuthenticationEvent {}
 
 class LoginByPhoneNumberEvent extends AuthenticationEvent {
   final String phoneNumb;
-
   LoginByPhoneNumberEvent(this.phoneNumb);
+}
+
+class ConfirmPhoneNumberEvent extends AuthenticationEvent {
+  final String phoneNumb;
+
+  ConfirmPhoneNumberEvent(this.phoneNumb);
 }

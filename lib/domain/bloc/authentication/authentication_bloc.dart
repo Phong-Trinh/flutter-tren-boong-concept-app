@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../infrastructure/repository/user_repository.dart';
 import '../../../utility/save_data.dart';
@@ -9,11 +10,12 @@ import 'authentication_state.dart';
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   //pass value to state to reponse to UI
+  late UserEntity? user;
 
   AuthenticationBloc({required UserRepository userRepository})
       : _userRepository = userRepository,
         super(LoginInitialState()) {
-    on<CheckLoginEvent>(checkUserEvent);
+    on<CheckLoginEvent>(checkUserLoginBeforeEvent);
     on<LoginByPhoneNumberEvent>(fetchUserEvent);
   }
 
@@ -22,28 +24,26 @@ class AuthenticationBloc
   Future<void> fetchUserEvent(
       LoginByPhoneNumberEvent event, Emitter<AuthenticationState> state) async {
     emit(LoginLoadingState());
-    var user = await _userRepository.fetchUserByPhoneNumber(event.phoneNumb);
+    user = await _userRepository.fetchUserByPhoneNumber(event.phoneNumb);
     try {
       if (user != null) {
-        SaveData.userId = user.id;
-        emit(AuthenticatedState(user));
+        SaveData.userId = user!.id;
+        emit(AuthenticatedState(user!));
       }
     } catch (e) {
-      emit(UnauthenticatedState());
+      emit(const UnauthenticatedState(false));
     }
-    //test
-    emit(AuthenticatedState(
-        UserEntity(id: '1', name: 'phong', phoneNumber: '0855556532')));
-    SaveData.userId = '1';
   }
 
-  FutureOr<void> checkUserEvent(
+  Future<void> checkUserLoginBeforeEvent(
       CheckLoginEvent event, Emitter<AuthenticationState> emit) async {
     emit(LoginLoadingState());
     await Future.delayed(const Duration(seconds: 1));
-    var user = _userRepository.fetchAlreadyUser();
+    var user = await _userRepository.fetchAlreadyUser();
+    //test
+    //var user = UserEntity(id: '1', name: 'Phong', phoneNumber: '0855556532');
     if (user == null) {
-      emit(UnauthenticatedState());
+      emit(const UnauthenticatedState(false));
     } else {
       SaveData.userId = user.id;
       emit(AuthenticatedState(user));
