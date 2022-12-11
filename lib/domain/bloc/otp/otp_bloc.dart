@@ -22,13 +22,30 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
         super(OtpGeneratingState()) {
     on<RequestOtp>(sendOtpToUser);
     on<ConfirmOtp>(checkOtpUserConfirm);
+    on<ResendOtp>(resendOtpToUser);
   }
 
   Future<void> sendOtpToUser(RequestOtp event, Emitter<OtpState> emit) async {
     //send otp va emit statement
+    emit(OtpSendingState());
     otpCode = generateOtpCode();
-    bool isSuccessSend = await _userRepository.sendOtpToUser(
-        _authBloc.user!.phoneNumber, otpCode);
+    bool isSuccessSend =
+        await _userRepository.sendOtpToUser(SaveData.userPhoneNumb, otpCode);
+    await Future.delayed(const Duration(seconds: 2));
+    if (isSuccessSend) {
+      emit(OtpReadyState());
+    } else {
+      emit(OtpSendFailState());
+    }
+  }
+
+  Future<void> resendOtpToUser(ResendOtp event, Emitter<OtpState> emit) async {
+    //send otp va emit statement
+    emit(OtpSendingState());
+    otpCode = generateOtpCode();
+    bool isSuccessSend =
+        await _userRepository.sendOtpToUser(SaveData.userPhoneNumb, otpCode);
+    await Future.delayed(const Duration(seconds: 2));
     if (isSuccessSend) {
       emit(OtpReadyState());
     } else {

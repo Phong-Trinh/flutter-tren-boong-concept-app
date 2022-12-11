@@ -5,23 +5,31 @@ import 'package:tren_boong_concept/domain/bloc/otp/otp_bloc.dart';
 import '../../../domain/bloc/authentication/authentication_bloc.dart';
 import '../../../domain/bloc/authentication/authentication_event.dart';
 import '../../../domain/bloc/otp/otp_event.dart';
+import '../../../domain/bloc/otp/otp_state.dart';
+import '../../../infrastructure/repository/user_repository.dart';
 import '../../../utility/save_data.dart';
+import 'confirm_button.dart';
+import 'resend_tap.dart';
 
 class OtpForm extends StatefulWidget {
-  const OtpForm({
-    Key? key,
-  }) : super(key: key);
+  OtpForm({Key? key}) : super(key: key);
 
   @override
   _OtpFormState createState() => _OtpFormState();
 }
 
 class _OtpFormState extends State<OtpForm> {
-  bool enableBtn = false;
+  bool resendEnable = false;
+  bool confirmEnable = false;
   FocusNode? pin2FocusNode;
   FocusNode? pin3FocusNode;
   FocusNode? pin4FocusNode;
-  List<String> inputCode = ['', '', '', ''];
+  List<TextEditingController> inputControllers = [
+    TextEditingController(text: ''),
+    TextEditingController(text: ''),
+    TextEditingController(text: ''),
+    TextEditingController(text: '')
+  ];
 
   @override
   void initState() {
@@ -47,105 +55,108 @@ class _OtpFormState extends State<OtpForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: Column(
-        children: [
-          const SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return BlocProvider(
+        create: (context) => OtpBloc(
+            authBloc: context.read<AuthenticationBloc>(),
+            userRepository: context.read<UserRepository>())
+          ..add(RequestOtp()),
+        child: Form(
+          child: Column(
             children: [
-              SizedBox(
-                width: 60,
-                child: TextFormField(
-                  autofocus: true,
-                  obscureText: true,
-                  style: const TextStyle(fontSize: 24),
-                  keyboardType: TextInputType.number,
-                  textAlign: TextAlign.center,
-                  decoration: otpInputDecoration,
-                  onChanged: (value) {
-                    inputCode[0] = value;
-                    nextField(value, pin2FocusNode);
-                  },
-                ),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: 60,
+                    child: TextFormField(
+                      controller: inputControllers[0],
+                      obscureText: true,
+                      style: const TextStyle(fontSize: 24),
+                      keyboardType: TextInputType.number,
+                      textAlign: TextAlign.center,
+                      decoration: otpInputDecoration,
+                      onChanged: (value) {
+                        nextField(value, pin2FocusNode);
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 60,
+                    child: TextFormField(
+                        controller: inputControllers[1],
+                        focusNode: pin2FocusNode,
+                        obscureText: true,
+                        style: const TextStyle(fontSize: 24),
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        decoration: otpInputDecoration,
+                        onChanged: (value) {
+                          nextField(value, pin3FocusNode);
+                        }),
+                  ),
+                  SizedBox(
+                    width: 60,
+                    child: TextFormField(
+                      controller: inputControllers[2],
+                      focusNode: pin3FocusNode,
+                      obscureText: true,
+                      style: const TextStyle(fontSize: 24),
+                      keyboardType: TextInputType.number,
+                      textAlign: TextAlign.center,
+                      decoration: otpInputDecoration,
+                      onChanged: (value) {
+                        nextField(value, pin4FocusNode);
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 60,
+                    child: TextFormField(
+                      controller: inputControllers[3],
+                      focusNode: pin4FocusNode,
+                      obscureText: true,
+                      style: const TextStyle(fontSize: 24),
+                      keyboardType: TextInputType.number,
+                      textAlign: TextAlign.center,
+                      decoration: otpInputDecoration,
+                      onChanged: (value) {
+                        if (value.length == 1) {
+                          pin4FocusNode!.unfocus();
+                          // Then you need to check is the code is correct or not
+                          setState(() {
+                            confirmEnable = true;
+                          });
+                        }
+                      },
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
-                width: 60,
-                child: TextFormField(
-                    focusNode: pin2FocusNode,
-                    obscureText: true,
-                    style: const TextStyle(fontSize: 24),
-                    keyboardType: TextInputType.number,
-                    textAlign: TextAlign.center,
-                    decoration: otpInputDecoration,
-                    onChanged: (value) {
-                      inputCode[1] = value;
-                      nextField(value, pin3FocusNode);
-                    }),
-              ),
-              SizedBox(
-                width: 60,
-                child: TextFormField(
-                  focusNode: pin3FocusNode,
-                  obscureText: true,
-                  style: const TextStyle(fontSize: 24),
-                  keyboardType: TextInputType.number,
-                  textAlign: TextAlign.center,
-                  decoration: otpInputDecoration,
-                  onChanged: (value) {
-                    inputCode[2] = value;
-                    nextField(value, pin4FocusNode);
-                  },
-                ),
-              ),
-              SizedBox(
-                width: 60,
-                child: TextFormField(
-                  focusNode: pin4FocusNode,
-                  obscureText: true,
-                  style: const TextStyle(fontSize: 24),
-                  keyboardType: TextInputType.number,
-                  textAlign: TextAlign.center,
-                  decoration: otpInputDecoration,
-                  onChanged: (value) {
-                    if (value.length == 1) {
-                      inputCode[3] = value;
-                      pin4FocusNode!.unfocus();
-                      // Then you need to check is the code is correct or not
-                      setState(() {
-                        enableBtn = true;
-                      });
-                    }
-                  },
-                ),
-              ),
+              const SizedBox(height: 30),
+              ConfirmButton(
+                  confirmEnable: confirmEnable,
+                  inputControllers: inputControllers),
+              SizedBox(height: 10),
+              BlocBuilder<OtpBloc, OtpState>(
+                  builder: (BuildContext context, OtpState state) {
+                if (state is OtpFailCheck) return failOtpText();
+                return Container();
+              }),
+              const SizedBox(height: 100),
+              resendTap(
+                  resendEnable: resendEnable,
+                  inputControllers: inputControllers),
+              const SizedBox(height: 10),
+              BlocBuilder<OtpBloc, OtpState>(
+                  builder: (BuildContext context, OtpState state) {
+                if (state is OtpSendingState)
+                  return CircularProgressIndicator();
+                return buildTimer();
+              }),
             ],
           ),
-          const SizedBox(height: 30),
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(122, 0, 0, 0),
-                minimumSize: const Size.fromHeight(50), // NEW
-              ),
-              onPressed: enableBtn
-                  ? () {
-                      print(getOtpString());
-                      context.read<OtpBloc>().add(ConfirmOtp(getOtpString()));
-                    }
-                  : null,
-              child: const SizedBox(
-                  height: 40,
-                  child: Center(
-                      child: Text('Xác thực', textAlign: TextAlign.center))))
-          // () {
-          //   return null;
-          //   // context
-          //   //     .read<AuthenticationBloc>()
-          //   //     .add(LoginByPhoneNumberEvent(SaveData.userPhoneNumb));
-          // })
-        ],
-      ),
-    );
+        ));
   }
 
   final otpInputDecoration = const InputDecoration(
@@ -155,11 +166,31 @@ class _OtpFormState extends State<OtpForm> {
     enabledBorder: OutlineInputBorder(),
   );
 
-  String getOtpString() {
-    String code = '';
-    for (var element in inputCode) {
-      code += element;
-    }
-    return code;
+  Row buildTimer() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text("Mã sẽ còn hiệu lực trong "),
+        TweenAnimationBuilder(
+          tween: Tween(begin: 30.0, end: 0.0),
+          duration: const Duration(seconds: 30),
+          builder: (_, dynamic value, child) => Text(
+            "00:${value.toInt()}",
+            style: TextStyle(color: Colors.red.shade400),
+          ),
+          onEnd: () {
+            setState(() {
+              resendEnable = true;
+              confirmEnable = false;
+            });
+          },
+        ),
+      ],
+    );
+  }
+
+  Text failOtpText() {
+    return Text('Otp bạn nhập không đúng, vui lòng thử lại.',
+        style: TextStyle(color: Colors.red.shade400));
   }
 }

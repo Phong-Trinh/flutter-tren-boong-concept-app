@@ -7,6 +7,7 @@ import '../../../domain/bloc/authentication/authentication_event.dart';
 import '../../../domain/bloc/authentication/authentication_state.dart';
 import '../../../utility/save_data.dart';
 import '../otp/otp_screen.dart';
+import 'gg_sign_in_btn.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -109,42 +110,7 @@ class LoginScreenState extends State<LoginScreen> {
               ),
 
               ///button Google Sign
-              OutlinedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Image(
-                              image: AssetImage("assets/icon/google-icon.png"),
-                              height: 25.0,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Text(
-                                'Sign in with Google',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            )
-                          ],
-                        )),
-                  )),
+              GoogleSigninButton(),
               SizedBox(height: 60)
             ],
           ),
