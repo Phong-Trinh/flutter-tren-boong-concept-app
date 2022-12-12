@@ -21,6 +21,22 @@ class UserService {
     return null;
   }
 
+  static Future<UserEntity?> getUserByEmail(String email) async {
+    try {
+      var url = Uri.parse(
+          '${ApiConstant.baseUrl}${ApiConstant.usersEndpoint}?filters[email][\$eq]=$email');
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        print(response.body);
+        UserEntity model = praseUserFromJson(response.body);
+        return model;
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    return null;
+  }
+
   static Future<void> saveUserLogin(String id) async {
     try {
       await SharedPreferencesService.setUserId(id);

@@ -7,6 +7,10 @@ class UserRepository {
     return await UserService.getUserByPhoneNumber(phoneNumb);
   }
 
+  Future<UserEntity?> fetchUserByEmail(String email) async {
+    return await UserService.getUserByEmail(email);
+  }
+
   Future<UserEntity?> fetchAlreadyUser() async {
     return await UserService.getUserLogedin();
   }

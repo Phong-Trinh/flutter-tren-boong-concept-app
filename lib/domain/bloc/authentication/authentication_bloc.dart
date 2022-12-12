@@ -16,15 +16,30 @@ class AuthenticationBloc
       : _userRepository = userRepository,
         super(LoginInitialState()) {
     on<CheckLoginEvent>(checkUserLoginBeforeEvent);
-    on<LoginByPhoneNumberEvent>(fetchUserEvent);
+    on<LoginByPhoneNumberEvent>(fetchUserEventByPhoneNumber);
+    on<LoginByGoogleAccount>(fetchUserEventByGoogle);
   }
 
   final UserRepository _userRepository;
 
-  Future<void> fetchUserEvent(
+  Future<void> fetchUserEventByPhoneNumber(
       LoginByPhoneNumberEvent event, Emitter<AuthenticationState> state) async {
     emit(LoginLoadingState());
     user = await _userRepository.fetchUserByPhoneNumber(event.phoneNumb);
+    try {
+      if (user != null) {
+        SaveData.userId = user!.id;
+        emit(AuthenticatedState(user!));
+      }
+    } catch (e) {
+      emit(const UnauthenticatedState(false));
+    }
+  }
+
+  Future<void> fetchUserEventByGoogle(
+      LoginByGoogleAccount event, Emitter<AuthenticationState> state) async {
+    emit(LoginLoadingState());
+    user = await _userRepository.fetchUserByEmail(event.account.email);
     try {
       if (user != null) {
         SaveData.userId = user!.id;
