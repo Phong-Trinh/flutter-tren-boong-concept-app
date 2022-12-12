@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+
 import '../pop_up/list_card.dart';
 import '../pop_up/menu.dart';
 import '../promotion/promotion.dart';
-import '../setting/user_setting/setting_popup.dart';
 import 'pop_over.dart';
 
 class UtilityBar extends StatefulWidget {
@@ -82,7 +82,7 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
             onPressed: () {
               setState(() {
                 widget.scaffoldKey.currentState!
-                    .showBottomSheet((context) => Popover(child: SettingPopup()));
+                    .showBottomSheet((context) => Container());
               });
             },
           ),
