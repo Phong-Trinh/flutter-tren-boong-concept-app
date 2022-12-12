@@ -1,10 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tren_boong_concept/domain/bloc/otp/otp_bloc.dart';
+import '../../../domain/bloc/authentication/authentication_bloc.dart';
+import '../../../domain/bloc/otp/otp_event.dart';
+import '../../../domain/bloc/otp/otp_state.dart';
+import '../../../infrastructure/repository/user_repository.dart';
 import '../../../utility/formater.dart';
 import '../../../utility/save_data.dart';
 import 'otp_form.dart';
 
-class OtpScreen extends StatelessWidget {
-  const OtpScreen({super.key});
+class OtpScreen extends StatefulWidget {
+  OtpScreen({super.key});
+
+  @override
+  State<OtpScreen> createState() => _OtpScreenState();
+}
+
+class _OtpScreenState extends State<OtpScreen> {
+  @override
+  void initState() {
+    waitOtpSend();
+    super.initState();
+  }
+
+  waitOtpSend() async {
+    await Future.delayed(const Duration(seconds: 2));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +33,16 @@ class OtpScreen extends StatelessWidget {
         body: SizedBox(
       width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.only(right: 15, left: 15, top: 40),
+        padding: const EdgeInsets.only(right: 15, left: 15, top: 50),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 30),
+              Image.asset(
+                "assets/image/logo.png",
+                width: 250,
+                height: 130,
+              ),
+              const SizedBox(height: 10),
               const Text(
                 "Xác nhận mã OTP",
                 style: TextStyle(
@@ -28,40 +54,11 @@ class OtpScreen extends StatelessWidget {
               ),
               Text("Mã đã được gửi đến " +
                   Formater.hidePhoneNumbFormat(SaveData.userPhoneNumb)),
-              buildTimer(),
-              OtpForm(),
-              SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {
-                  // OTP code resend
-                },
-                child: const Text(
-                  "Gửi lại",
-                  style: TextStyle(decoration: TextDecoration.underline),
-                ),
-              )
+              OtpForm()
             ],
           ),
         ),
       ),
     ));
-  }
-
-  Row buildTimer() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Mã sẽ còn hiệu lực trong "),
-        TweenAnimationBuilder(
-          tween: Tween(begin: 30.0, end: 0.0),
-          duration: Duration(seconds: 30),
-          builder: (_, dynamic value, child) => Text(
-            "00:${value.toInt()}",
-            style: TextStyle(color: Colors.red.shade400),
-          ),
-          onEnd: () {},
-        ),
-      ],
-    );
   }
 }

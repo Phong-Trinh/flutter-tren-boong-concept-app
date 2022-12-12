@@ -2,6 +2,8 @@
     package="micro7.tren_boong_concept">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:label="Tren Boong"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
@@ -24,6 +26,8 @@
             <meta-data
                 android:name="asset_statements"
                 android:resource="@string/asset_statements" />
+            <meta-data android:name="io.flutter.network-policy"
+                android:resource="@xml/network_security_config" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
