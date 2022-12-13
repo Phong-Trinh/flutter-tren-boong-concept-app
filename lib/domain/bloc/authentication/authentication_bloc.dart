@@ -19,14 +19,12 @@ class AuthenticationBloc
   AuthenticationBloc({required UserRepository userRepository})
       : _userRepository = userRepository,
         super(LoginInitialState(null)) {
-    on<CheckLoginEvent>(checkUserEvent);
+    on<CheckLoginEvent>(checkUserLoginBeforeEvent);
     on<LoginByPhoneNumberEvent>(fetchUserEvent);
     on<UpdateDataUser>(updateUserEvent);
     on<UpdateAvataUser>(updateAvatarEvent);
   }
   final UserRepository _userRepository;
-
-
 
   Future<void> fetchUserEvent(
       LoginByPhoneNumberEvent event, Emitter<AuthenticationState> state) async {
@@ -57,7 +55,8 @@ class AuthenticationBloc
     }
   }
 
-  Future<void> updateUserEvent(UpdateDataUser event, Emitter<AuthenticationState> emit) async {
+  Future<void> updateUserEvent(
+      UpdateDataUser event, Emitter<AuthenticationState> emit) async {
     final response = await http.put(
       Uri.parse('${ApiConstant.baseUrl}/app-users/${state.user?.id}'),
       headers: <String, String>{
@@ -65,15 +64,15 @@ class AuthenticationBloc
       },
       body: jsonEncode(event.user.toJson()),
     );
-
-
   }
 
-  Future<void> updateAvatarEvent(UpdateAvataUser event, Emitter<AuthenticationState> emit) async {
+  Future<void> updateAvatarEvent(
+      UpdateAvataUser event, Emitter<AuthenticationState> emit) async {
     await Future.delayed(const Duration(seconds: 7)).then((value) async {
       try {
         print("Spam ${event.nameImage}");
-        var url = Uri.parse('${ApiConstant.baseUrl}/upload/files?filters[name][\$eq]=${event.nameImage}');
+        var url = Uri.parse(
+            '${ApiConstant.baseUrl}/upload/files?filters[name][\$eq]=${event.nameImage}');
         var response = await http.get(url);
 
         if (response.statusCode == 200) {
@@ -92,8 +91,6 @@ class AuthenticationBloc
       } catch (e) {
         print(e.toString());
       }
-
     });
-
   }
 }
