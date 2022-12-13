@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "961139315486",
+    "project_id": "comeback-ad1eb",
+    "storage_bucket": "comeback-ad1eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961139315486:android:e5529a812cc53518cfef0f",
+        "android_client_info": {
+          "package_name": "com.example.tren_boong_concept"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961139315486-hqkekestpi1tfsp6j1ctu5ieu0e9t289.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYy4jcAP8hYO1KeG_WrE35YViLQDXCZpI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961139315486-hqkekestpi1tfsp6j1ctu5ieu0e9t289.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "961139315486-njj8rkbf8qpr7300b96vdai3g828meal.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.trenBoongConcept"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

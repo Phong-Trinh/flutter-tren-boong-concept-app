@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../pop_up/list_card.dart';
 import '../pop_up/menu.dart';
 import '../promotion/promotion.dart';
+import '../setting/user_setting/setting_popup.dart';
 import 'pop_over.dart';
 
 class UtilityBar extends StatefulWidget {
@@ -50,7 +50,7 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
               setState(() {
                 persistentBottomSheetController =
                     widget.scaffoldKey.currentState!.showBottomSheet(
-                        (context) => const Popover(child: ListCard()));
+                            (context) => const Popover(child: ListCard()));
               });
             },
           ),
@@ -61,11 +61,11 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
                 setState(() {
                   persistentBottomSheetController =
                       widget.scaffoldKey.currentState!.showBottomSheet(
-                          (context) => const Popover(child: MenuPopup()));
+                              (context) => const Popover(child: MenuPopup()));
                 });
               }
-              // child: Text("Orders")
-              ),
+            // child: Text("Orders")
+          ),
           IconButton(
               icon: const Icon(Icons.videogame_asset),
               tooltip: ("promotion"),
@@ -73,7 +73,7 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
                 setState(() {
                   persistentBottomSheetController =
                       widget.scaffoldKey.currentState!.showBottomSheet(
-                          (context) => Popover(child: PromotionPopup()));
+                              (context) => Popover(child: PromotionPopup()));
                 });
               }),
           IconButton(
@@ -82,7 +82,7 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
             onPressed: () {
               setState(() {
                 widget.scaffoldKey.currentState!
-                    .showBottomSheet((context) => Container());
+                    .showBottomSheet((context) => Popover(child: SettingPopup()));
               });
             },
           ),
