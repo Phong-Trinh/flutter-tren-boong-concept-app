@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../domain/entity/order_detail_entity.dart';
-import '../../utility/order_format.dart';
+import '../../utility/formater.dart';
 
 class ListDetailProduct extends StatelessWidget {
   final List<OrderDetailEntity> details;
@@ -9,17 +9,17 @@ class ListDetailProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(left: 10, right: 10),
+        padding: const EdgeInsets.only(left: 10, right: 10),
         color: Colors.white,
         child: Column(
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               children: [
-                Text('Sản phẩm đã chọn',
+                const Text('Sản phẩm đã chọn',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
-                Spacer(),
+                const Spacer(),
                 GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
@@ -27,11 +27,11 @@ class ListDetailProduct extends StatelessWidget {
                     child: Container(
                         height: 30,
                         width: 55,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 243, 227, 214),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15))),
-                        child: Center(
+                        child: const Center(
                             child: Text('Thêm',
                                 style: TextStyle(
                                     fontSize: 12,
@@ -39,7 +39,19 @@ class ListDetailProduct extends StatelessWidget {
                                     fontWeight: FontWeight.w700)))))
               ],
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
+            details.isEmpty
+                ? Container(
+                    margin: EdgeInsets.only(bottom: 10),
+                    width: double.infinity,
+                    child: const Text('*Không có sản phẩm trong giỏ hàng',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 212, 93, 3),
+                            fontWeight: FontWeight.w500,
+                            height: 2,
+                            fontStyle: FontStyle.italic)))
+                : Container(),
             for (var item in details)
               details.indexOf(item) == details.length - 1
                   ? DetailInforProduct(item: item, isLastItem: false)
@@ -58,9 +70,9 @@ class DetailInforProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(top: 15, bottom: 15, left: 15),
+        padding: const EdgeInsets.only(top: 15, bottom: 15, left: 15),
         decoration: isLastItem
-            ? BoxDecoration(
+            ? const BoxDecoration(
                 border: Border(
                     bottom: BorderSide(
                         width: 1, color: Color.fromARGB(255, 185, 185, 185))))
@@ -71,16 +83,17 @@ class DetailInforProduct extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(generateProductName(item),
-                    style: TextStyle(fontWeight: FontWeight.w700, height: 2)),
-                Text('Vừa',
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w700, height: 2)),
+                const Text('Vừa',
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                         color: Color.fromARGB(255, 106, 106, 106)))
               ],
             ),
-            Spacer(),
-            Text(generatePrice(item), style: TextStyle(fontSize: 16))
+            const Spacer(),
+            Text(generatePrice(item), style: const TextStyle(fontSize: 16))
           ],
         ));
   }
@@ -90,6 +103,6 @@ class DetailInforProduct extends StatelessWidget {
   }
 
   String generatePrice(OrderDetailEntity item) {
-    return OrderFormat.vndFormat(item.price * item.quantity);
+    return Formater.vndFormat(item.price * item.quantity);
   }
 }

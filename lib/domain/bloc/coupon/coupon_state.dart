@@ -12,9 +12,9 @@ class CouponInitialState extends CouponState {}
 
 class CouponLoadingState extends CouponState {}
 
-class CouponLoadSuccess extends CouponState {
+class CouponUpdateSuccess extends CouponState {
   final List<CouponEntity> coupons;
-  const CouponLoadSuccess(this.coupons);
+  const CouponUpdateSuccess(this.coupons);
 }
 
 class CouponLoadFailed extends CouponState {}

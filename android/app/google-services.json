@@ -1,40 +1,84 @@
 {
   "project_info": {
-    "project_number": "961139315486",
-    "project_id": "comeback-ad1eb",
-    "storage_bucket": "comeback-ad1eb.appspot.com"
+    "project_number": "98129596232",
+    "project_id": "tren-boong-concept",
+    "storage_bucket": "tren-boong-concept.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:961139315486:android:e5529a812cc53518cfef0f",
+        "mobilesdk_app_id": "1:98129596232:android:b30d22f9e25ee35daf2d7d",
         "android_client_info": {
-          "package_name": "com.example.tren_boong_concept"
+          "package_name": "com.example.test_gg_sign_in_2"
         }
       },
       "oauth_client": [
         {
-          "client_id": "961139315486-hqkekestpi1tfsp6j1ctu5ieu0e9t289.apps.googleusercontent.com",
+          "client_id": "98129596232-bdfjc0i9b1v3vdij0ufpg7e76g3umn5s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBYy4jcAP8hYO1KeG_WrE35YViLQDXCZpI"
+          "current_key": "AIzaSyAA4bz8VUzpnr8Orsm8VONZZ7uIGp22KFc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "961139315486-hqkekestpi1tfsp6j1ctu5ieu0e9t289.apps.googleusercontent.com",
+              "client_id": "98129596232-bdfjc0i9b1v3vdij0ufpg7e76g3umn5s.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "961139315486-njj8rkbf8qpr7300b96vdai3g828meal.apps.googleusercontent.com",
+              "client_id": "98129596232-6eefptrqoodsbuf899bvkj27c2p00snn.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.trenBoongConcept"
+                "bundle_id": "micro7.trenBoongConcept"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98129596232:android:89fcd9b638e1e3aeaf2d7d",
+        "android_client_info": {
+          "package_name": "micro7.tren_boong_concept"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "98129596232-ff7206u771t7tedheb22cks30cc0fg06.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "micro7.tren_boong_concept",
+            "certificate_hash": "0af24dcbb777296cd24d37c4b34478bbd18e59ab"
+          }
+        },
+        {
+          "client_id": "98129596232-bdfjc0i9b1v3vdij0ufpg7e76g3umn5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA4bz8VUzpnr8Orsm8VONZZ7uIGp22KFc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "98129596232-bdfjc0i9b1v3vdij0ufpg7e76g3umn5s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "98129596232-6eefptrqoodsbuf899bvkj27c2p00snn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "micro7.trenBoongConcept"
               }
             }
           ]

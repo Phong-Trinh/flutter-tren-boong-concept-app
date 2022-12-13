@@ -14,7 +14,6 @@ class CheckLoginEvent extends AuthenticationEvent {}
 
 class LoginByPhoneNumberEvent extends AuthenticationEvent {
   final String phoneNumb;
-
   LoginByPhoneNumberEvent(this.phoneNumb);
 }
 
@@ -26,5 +25,9 @@ class UpdateDataUser extends AuthenticationEvent{
 class UpdateAvataUser extends AuthenticationEvent{
   String nameImage;
   UpdateAvataUser(this.nameImage);
+}
+class ConfirmPhoneNumberEvent extends AuthenticationEvent {
+  final String phoneNumb;
 
+  ConfirmPhoneNumberEvent(this.phoneNumb);
 }

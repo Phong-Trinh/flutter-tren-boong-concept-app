@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/entity/order_entity.dart';
-import '../../utility/order_format.dart';
+import '../../utility/formater.dart';
 
 class TotalPrice extends StatelessWidget {
   final OrderEntity order;
@@ -10,24 +10,32 @@ class TotalPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(left: 10, right: 10),
+        padding: const EdgeInsets.only(left: 10, right: 10),
         color: Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
-            Text('Tổng cộng',
+            const SizedBox(height: 20),
+            const Text('Tổng cộng',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             DetailPrice(title: 'Thành tiền', price: generatePrice(order)),
-            DetailPrice(title: 'Giảm giá', price: '0đ'),
-            PayPrice(title: 'Số tiền thanh toán', price: generatePrice(order))
+            DetailPrice(
+                title: 'Giảm giá',
+                price: order.coupon != null
+                    ? '-${Formater.vndFormat(order.coupon!.couponPrice)}'
+                    : '-${Formater.vndFormat(0)}'),
+            PayPrice(
+                title: 'Số tiền thanh toán',
+                price: Formater.vndFormat(order.coupon != null
+                    ? order.totalPrice - order.coupon!.couponPrice
+                    : order.totalPrice))
           ],
         ));
   }
 
   String generatePrice(OrderEntity order) {
-    return OrderFormat.vndFormat(order.totalPrice);
+    return Formater.vndFormat(order.totalPrice);
     ;
   }
 }
@@ -40,16 +48,16 @@ class DetailPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(top: 10, bottom: 10),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.only(top: 10, bottom: 10),
+        decoration: const BoxDecoration(
             border: Border(
                 bottom: BorderSide(
                     width: 1, color: Color.fromARGB(255, 185, 185, 185)))),
         child: Row(
           children: [
-            Text(title, style: TextStyle(height: 2)),
-            Spacer(),
-            Text(price, style: TextStyle(fontSize: 16))
+            Text(title, style: const TextStyle(height: 2)),
+            const Spacer(),
+            Text(price, style: const TextStyle(fontSize: 16))
           ],
         ));
   }
@@ -63,13 +71,13 @@ class PayPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.only(top: 10, bottom: 10),
+        padding: const EdgeInsets.only(top: 10, bottom: 10),
         child: Row(
           children: [
             Text(title,
-                style: TextStyle(fontWeight: FontWeight.w700, height: 2)),
-            Spacer(),
-            Text(price, style: TextStyle(fontSize: 16))
+                style: const TextStyle(fontWeight: FontWeight.w700, height: 2)),
+            const Spacer(),
+            Text(price, style: const TextStyle(fontSize: 16))
           ],
         ));
   }
