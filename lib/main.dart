@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tren_boong_concept/domain/bloc/authentication/authentication_state.dart';
+import 'package:tren_boong_concept/features/notifications/fcm_notifications.dart';
 import 'package:uni_links/uni_links.dart';
 import 'domain/bloc/authentication/authentication_bloc.dart';
 import 'domain/bloc/authentication/authentication_event.dart';
@@ -15,6 +16,7 @@ import 'features/loading/loading_screen.dart';
 import 'features/order/order_result.dart';
 import 'firebase_options.dart';
 import 'infrastructure/repository/user_repository.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'utility/save_data.dart';
 
 void main() async {
@@ -26,6 +28,10 @@ void main() async {
     final license = await rootBundle.loadString('lato_fonts/OFL.txt');
     yield LicenseEntryWithLineBreaks(['lato_fonts'], license);
   });
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+
   runApp(const MyApp());
 }
 
@@ -37,6 +43,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  FirebaseCloudMessagingNotifications firebaseCloudMessagingNotifications = FirebaseCloudMessagingNotifications();
+
   Uri? _initialUri;
   Uri? _latestUri;
   Object? _err;
@@ -46,6 +54,8 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    firebaseCloudMessagingNotifications.pushFCMToken();
+    firebaseCloudMessagingNotifications.initMessaging(context);
     _handleIncomingLinks();
   }
 

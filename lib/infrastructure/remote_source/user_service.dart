@@ -10,6 +10,7 @@ class UserService {
       var url = Uri.parse(
           '${ApiConstant.baseUrl}${ApiConstant.usersEndpoint}?filters[phoneNumber][\$eq]=$phoneNumb');
       var response = await http.get(url);
+      print(response.body);
       if (response.statusCode == 200) {
         print(response.body);
         UserEntity model = praseUserFromJson(response.body);
