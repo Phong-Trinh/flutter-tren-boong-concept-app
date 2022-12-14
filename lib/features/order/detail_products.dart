@@ -79,18 +79,36 @@ class DetailInforProduct extends StatelessWidget {
             : null,
         child: Row(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(generateProductName(item),
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w700, height: 2)),
-                const Text('Vừa',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                        color: Color.fromARGB(255, 106, 106, 106)))
-              ],
+            GestureDetector(
+                onTap: () {
+                  // decrease product logic
+                  //  context.read<OrderBloc>().add(DecreaseProductItem(item));
+                },
+                child: Container(
+                    height: 30,
+                    width: 30,
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 243, 227, 214),
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    child: const Center(
+                        child: Icon(
+                            color: Color.fromARGB(255, 212, 93, 3),
+                            Icons.remove)))),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(generateProductName(item),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w700, height: 2)),
+                  const Text('Vừa',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Color.fromARGB(255, 106, 106, 106)))
+                ],
+              ),
             ),
             const Spacer(),
             Text(generatePrice(item), style: const TextStyle(fontSize: 16))
