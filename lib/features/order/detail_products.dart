@@ -89,17 +89,75 @@ class DetailInforProduct extends StatelessWidget {
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
-                        color: Color.fromARGB(255, 106, 106, 106)))
+                        color: Color.fromARGB(255, 106, 106, 106))),
               ],
             ),
             const Spacer(),
-            Text(generatePrice(item), style: const TextStyle(fontSize: 16))
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: GestureDetector(
+                          onTap: () {
+                            // call decrease product funtion here
+                          },
+                          child: Container(
+                              height: 20,
+                              width: 20,
+                              decoration: const BoxDecoration(
+                                  color: Color.fromARGB(255, 243, 227, 214),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15))),
+                              child: const Center(
+                                  child: Icon(
+                                      size: 20,
+                                      color: Color.fromARGB(255, 212, 93, 3),
+                                      Icons.remove)))),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 8),
+                      child: Text(generateProductQuanity(item),
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                          )),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: GestureDetector(
+                          onTap: () {
+                            // call add product funtion here
+                          },
+                          child: Container(
+                              height: 20,
+                              width: 20,
+                              decoration: const BoxDecoration(
+                                  color: Color.fromARGB(255, 243, 227, 214),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15))),
+                              child: const Center(
+                                  child: Icon(
+                                      size: 20,
+                                      color: Color.fromARGB(255, 212, 93, 3),
+                                      Icons.add)))),
+                    ),
+                  ],
+                ),
+                Text(generatePrice(item), style: const TextStyle(fontSize: 15)),
+              ],
+            ),
           ],
         ));
   }
 
   String generateProductName(OrderDetailEntity item) {
-    return item.quantity.toString() + 'x ' + item.product.name;
+    return item.product.name;
+  }
+
+  String generateProductQuanity(OrderDetailEntity item) {
+    return item.quantity.toString();
   }
 
   String generatePrice(OrderDetailEntity item) {
