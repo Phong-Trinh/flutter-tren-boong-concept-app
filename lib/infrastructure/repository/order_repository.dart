@@ -16,8 +16,8 @@ class OrderRepository {
       if (orderId == null) {
         throw Exception('Create order exception');
       }
-      bool checkPayment =
-          await MomoPaymentService.createTransaction('1', order.totalPrice);
+      bool checkPayment = await MomoPaymentService.createTransaction(
+          orderId!.toString(), order.totalPrice);
       if (checkPayment == false) {
         throw Exception('Create order exception');
       }
