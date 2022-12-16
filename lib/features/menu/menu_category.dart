@@ -31,7 +31,7 @@ class MenuCategory extends StatelessWidget {
                     )),
               )),
               SizedBox(height: 5),
-              Text(category.name, style: TextStyle(fontSize: 12))
+              Text(category.name, style: TextStyle(fontSize: 12)),
             ]),
           // Column(children: [
           //   Expanded(
