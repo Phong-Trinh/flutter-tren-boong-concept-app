@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class SaveData {
@@ -9,4 +10,5 @@ class SaveData {
     scopes: <String>['email'],
   );
   static List<String> selectedCardProducts = [];
+  static GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 }

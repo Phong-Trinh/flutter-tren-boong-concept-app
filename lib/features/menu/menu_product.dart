@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 import '../../domain/bloc/order/order_bloc.dart';
 import '../../domain/bloc/order/order_event.dart';
 import '../../domain/entity/category_products_entity.dart';
@@ -7,9 +8,11 @@ import '../../domain/entity/product_entity.dart';
 import '../../utility/formater.dart';
 
 class MenuProduct extends StatefulWidget {
-  const MenuProduct({super.key, required this.categories});
+  const MenuProduct(
+      {super.key, required this.categories, required this.controller});
 
   final List<CategoryProductsEntity> categories;
+  final AutoScrollController controller;
 
   @override
   State<MenuProduct> createState() => _MenuProductState();
@@ -21,30 +24,48 @@ class _MenuProductState extends State<MenuProduct> {
   @override
   void initState() {
     super.initState();
-    cardCategory = widget.categories.removeLast();
-    drinkCategories = widget.categories;
+    cardCategory = widget.categories.last;
+    drinkCategories =
+        widget.categories.getRange(0, widget.categories.length - 1).toList();
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.only(top: 20, left: 16, right: 16),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          for (var category in drinkCategories) ...[
-            if (category.products.isNotEmpty)
-              Text(category.category.name,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w700, fontSize: 20, height: 4)),
-            for (var item in category.products)
-              detailDrinkProduct(context, item)
-          ],
-          if (cardCategory.products.isNotEmpty)
-            Text(cardCategory.category.name,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w700, fontSize: 20, height: 4)),
-          for (var item in cardCategory.products)
-            detailCardProduct(context, item)
-        ]));
+        padding: EdgeInsets.only(top: 20, left: 16, right: 16),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              for (var category in drinkCategories)
+                _wrapScrollTag(
+                    index: drinkCategories.indexOf(category),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (category.products.isNotEmpty)
+                            Text(category.category.name,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20,
+                                    height: 4)),
+                          for (var item in category.products)
+                            detailDrinkProduct(context, item)
+                        ])),
+              _wrapScrollTag(
+                  index: widget.categories.length - 1,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (cardCategory.products.isNotEmpty)
+                          Text(cardCategory.category.name,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                  height: 4)),
+                        for (var item in cardCategory.products)
+                          detailCardProduct(context, item)
+                      ]))
+            ]));
   }
 
   Widget detailDrinkProduct(BuildContext context, ProductEntity item) {
@@ -142,4 +163,12 @@ class _MenuProductState extends State<MenuProduct> {
                       child: const Icon(Icons.add, color: Colors.white))))
         ]));
   }
+
+  Widget _wrapScrollTag({required int index, required Widget child}) =>
+      AutoScrollTag(
+        key: ValueKey(index),
+        controller: widget.controller,
+        index: index,
+        child: child,
+      );
 }

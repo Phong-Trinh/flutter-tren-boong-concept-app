@@ -12,7 +12,8 @@ class LoadOrderEvent extends OrderEvent {}
 
 class AddProductItem extends OrderEvent {
   final ProductEntity product;
-
+  @override
+  List<Object?> get props => <Object?>[product];
   AddProductItem(this.product);
 }
 
@@ -22,7 +23,13 @@ class AddCoupon extends OrderEvent {
   AddCoupon(this.coupon);
 }
 
-class DecreaseProductItem extends OrderEvent {}
+class DecreaseProductItem extends OrderEvent {
+  final ProductEntity product;
+
+  @override
+  List<Object?> get props => <Object?>[product];
+  DecreaseProductItem(this.product);
+}
 
 class EmitOrder extends OrderEvent {}
 

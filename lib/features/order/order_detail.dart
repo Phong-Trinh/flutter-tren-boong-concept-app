@@ -7,10 +7,15 @@ import 'detail_paymet_method.dart';
 import 'detail_products.dart';
 import 'total_price.dart';
 
-class OrderDetail extends StatelessWidget {
+class OrderDetail extends StatefulWidget {
   final OrderBloc orderBloc;
   const OrderDetail({super.key, required this.orderBloc});
 
+  @override
+  State<OrderDetail> createState() => _OrderDetailState();
+}
+
+class _OrderDetailState extends State<OrderDetail> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,13 +31,13 @@ class OrderDetail extends StatelessWidget {
                     style:
                         TextStyle(fontSize: 16, fontWeight: FontWeight.w700)))),
         SizedBox(height: 25),
-        ListDetailProduct(details: orderBloc.order.orderDetails),
+        ListDetailProduct(orderBloc: widget.orderBloc),
         SizedBox(height: 25),
-        DetailAppliedCoupon(coupon: orderBloc.order.coupon),
+        DetailAppliedCoupon(coupon: widget.orderBloc.order.coupon),
         SizedBox(height: 25),
         DetailAPaymentMethod(),
         SizedBox(height: 25),
-        TotalPrice(order: orderBloc.order),
+        TotalPrice(order: widget.orderBloc.order),
         SizedBox(height: 50),
       ]),
     );
