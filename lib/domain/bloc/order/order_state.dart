@@ -27,7 +27,7 @@ class OrderUpdateSuccess extends OrderState {
   OrderUpdateSuccess(this.order);
 }
 
-class AddProductItemFailState extends OrderState {}
+class OrderUpdateFail extends OrderState {}
 
 class OrderEmptyState extends OrderState {}
 

@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../domain/bloc/order/order_bloc.dart';
+import '../../domain/bloc/order/order_event.dart';
 import '../../domain/entity/order_detail_entity.dart';
 import '../../utility/formater.dart';
 
 class ListDetailProduct extends StatelessWidget {
-  final List<OrderDetailEntity> details;
-  const ListDetailProduct({super.key, required this.details});
+  final OrderBloc orderBloc;
+
+  ListDetailProduct({super.key, required this.orderBloc});
+
+  late List<OrderDetailEntity> details;
 
   @override
   Widget build(BuildContext context) {
+    details = orderBloc.order.orderDetails;
     return Container(
         padding: const EdgeInsets.only(left: 10, right: 10),
         color: Colors.white,
@@ -54,24 +61,35 @@ class ListDetailProduct extends StatelessWidget {
                 : Container(),
             for (var item in details)
               details.indexOf(item) == details.length - 1
-                  ? DetailInforProduct(item: item, isLastItem: false)
-                  : DetailInforProduct(item: item, isLastItem: true)
+                  ? DetailInforProduct(
+                      item: item, isLastItem: false, orderBloc: orderBloc)
+                  : DetailInforProduct(
+                      item: item, isLastItem: true, orderBloc: orderBloc)
           ],
         ));
   }
 }
 
-class DetailInforProduct extends StatelessWidget {
+class DetailInforProduct extends StatefulWidget {
+  final OrderBloc orderBloc;
   final OrderDetailEntity item;
   final bool isLastItem;
   const DetailInforProduct(
-      {super.key, required this.item, required this.isLastItem});
+      {super.key,
+      required this.item,
+      required this.isLastItem,
+      required this.orderBloc});
 
+  @override
+  State<DetailInforProduct> createState() => _DetailInforProductState();
+}
+
+class _DetailInforProductState extends State<DetailInforProduct> {
   @override
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.only(top: 15, bottom: 15, left: 15),
-        decoration: isLastItem
+        decoration: widget.isLastItem
             ? const BoxDecoration(
                 border: Border(
                     bottom: BorderSide(
@@ -82,7 +100,7 @@ class DetailInforProduct extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(generateProductName(item),
+                Text(generateProductName(widget.item),
                     style: const TextStyle(
                         fontWeight: FontWeight.w700, height: 2)),
                 const Text('Vừa',
@@ -102,6 +120,10 @@ class DetailInforProduct extends StatelessWidget {
                       child: GestureDetector(
                           onTap: () {
                             // call decrease product funtion here
+                            setState(() {
+                              widget.orderBloc.add(
+                                  DecreaseProductItem(widget.item.product));
+                            });
                           },
                           child: Container(
                               height: 20,
@@ -118,7 +140,7 @@ class DetailInforProduct extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 10, 10, 8),
-                      child: Text(generateProductQuanity(item),
+                      child: Text(generateProductQuanity(widget.item),
                           style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w700,
@@ -129,6 +151,11 @@ class DetailInforProduct extends StatelessWidget {
                       child: GestureDetector(
                           onTap: () {
                             // call add product funtion here
+
+                            setState(() {
+                              widget.orderBloc
+                                  .add(AddProductItem(widget.item.product));
+                            });
                           },
                           child: Container(
                               height: 20,
@@ -145,7 +172,8 @@ class DetailInforProduct extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(generatePrice(item), style: const TextStyle(fontSize: 15)),
+                Text(generatePrice(widget.item),
+                    style: const TextStyle(fontSize: 15)),
               ],
             ),
           ],

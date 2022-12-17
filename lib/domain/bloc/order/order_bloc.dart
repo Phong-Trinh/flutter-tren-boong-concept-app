@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tren_boong_concept/features/order/total_price.dart';
 import '../../../infrastructure/repository/order_repository.dart';
 import '../../../utility/save_data.dart';
 import '../../entity/order_detail_entity.dart';
@@ -31,12 +32,19 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
         emit(OrderUpdateSuccess(order));
       } catch (e) {
         //do something
-        emit(AddProductItemFailState());
+        emit(OrderUpdateFail());
       }
     });
 
     on<DecreaseProductItem>((event, emit) async {
-      //do and emit something
+      try {
+        decreaseProduct(event.product);
+        emit(OrderUpdateSuccess(order));
+      } catch (e) {
+        //do something
+        print(e.toString());
+        emit(OrderUpdateFail());
+      }
     });
 
     on<AddCoupon>((event, emit) async {
@@ -76,5 +84,24 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
           product: product, quantity: 1, price: product.price));
     }
     order.totalPrice += product.price;
+  }
+
+  //new
+  void decreaseProduct(ProductEntity product) {
+    OrderDetailEntity? removedDetail;
+    order.orderDetails.forEach((element) {
+      if (element.product.name == product.name) {
+        element.quantity -= 1;
+        if (element.quantity == 0) {
+          removedDetail = element;
+        }
+      }
+    });
+    if (removedDetail != null) {
+      order.orderDetails.remove(removedDetail);
+    }
+
+    order.totalPrice -= product.price;
+    print(order.totalPrice);
   }
 }
