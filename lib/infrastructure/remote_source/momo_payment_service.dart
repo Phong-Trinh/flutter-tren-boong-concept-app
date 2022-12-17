@@ -8,7 +8,7 @@ class MomoPaymentService {
   static String partnerCode = "MOMOKPCW20221129";
   static String requestType = "captureWallet";
   static String notifyUrl =
-      "https://boiling-waters-91078.herokuapp.com/api/momo-payments";
+      "https://boiling-waters-91078.herokuapp.com/api/momo-ipns";
   static String returnUrl =
       "https://master--cheerful-crumble-ea2dee.netlify.app/";
   static String extraData = "ew0KImVtYWlsIjogImh1b25neGRAZ21haWwuY29tIg0KfQ==";
@@ -18,7 +18,7 @@ class MomoPaymentService {
     try {
       now = DateTime.now();
       //test
-      orderId = now.millisecondsSinceEpoch.toString();
+      orderId = orderId;
       String requestId = now.millisecondsSinceEpoch.toString() + orderId;
       String signature =
           generateSignature(orderId.toString(), totalPrice, requestId);

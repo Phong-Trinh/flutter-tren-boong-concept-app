@@ -25,7 +25,7 @@ class _GoogleSigninButtonState extends State<GoogleSigninButton> {
         .listen((GoogleSignInAccount? account) {
       context
           .read<AuthenticationBloc>()
-          .add(LoginByPhoneNumberEvent('0855556532'));
+          .add(LoginByGoogleEvent(account!.email));
       setState(() {
         _currentUser = account;
       });

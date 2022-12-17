@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../infrastructure/repository/user_repository.dart';
 import '../../../infrastructure/remote_source/api_constant.dart';
@@ -20,20 +19,37 @@ class AuthenticationBloc
       : _userRepository = userRepository,
         super(LoginInitialState(null)) {
     on<CheckLoginEvent>(checkUserLoginBeforeEvent);
-    on<LoginByPhoneNumberEvent>(fetchUserEvent);
+    on<LoginByPhoneNumberEvent>(signInPhoneNumberEvent);
+    on<LoginByGoogleEvent>(signInEmailEvent);
     on<UpdateDataUser>(updateUserEvent);
     on<UpdateAvataUser>(updateAvatarEvent);
   }
   final UserRepository _userRepository;
 
-  Future<void> fetchUserEvent(
+  Future<void> signInPhoneNumberEvent(
       LoginByPhoneNumberEvent event, Emitter<AuthenticationState> state) async {
     emit(LoginLoadingState(null));
     var user = await _userRepository.fetchUserByPhoneNumber(event.phoneNumb);
+    user ??= await _userRepository.createUserWithPhoneNumber(event.phoneNumb);
     try {
       if (user != null) {
-        SaveData.userId = user!.id;
-        emit(AuthenticatedState(user!));
+        SaveData.userId = user.id;
+        emit(AuthenticatedState(user));
+      }
+    } catch (e) {
+      emit(UnauthenticatedState(null));
+    }
+  }
+
+  Future<void> signInEmailEvent(
+      LoginByGoogleEvent event, Emitter<AuthenticationState> state) async {
+    emit(LoginLoadingState(null));
+    var user = await _userRepository.fetchUserByEmail(event.email);
+    user ??= await _userRepository.createUserWithEmail(event.email);
+    try {
+      if (user != null) {
+        SaveData.userId = user.id;
+        emit(AuthenticatedState(user));
       }
     } catch (e) {
       emit(UnauthenticatedState(null));
@@ -46,7 +62,7 @@ class AuthenticationBloc
     await Future.delayed(const Duration(seconds: 1));
     var user = await _userRepository.fetchAlreadyUser();
     //test
-    //var user = UserEntity(id: '1', name: 'Phong', phoneNumber: '0855556532');
+    //var user = UserEntity(id: '1', firstName: 'Phong', phoneNumber: '0855556532');
     if (user == null) {
       emit(UnauthenticatedState(null));
     } else {

@@ -7,10 +7,11 @@ import 'order_result.dart';
 
 class ConfirmOrder extends StatelessWidget {
   final OrderBloc orderBloc;
-  const ConfirmOrder({super.key, required this.orderBloc});
-
+  ConfirmOrder({super.key, required this.orderBloc});
+  late bool isEmitAvailable;
   @override
   Widget build(BuildContext context) {
+    isEmitAvailable = true;
     return Container(
         padding:
             const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
@@ -38,9 +39,11 @@ class ConfirmOrder extends StatelessWidget {
             const Spacer(),
             TextButton(
                 onPressed: () {
-                  if ((orderBloc.order.orderDetails.isNotEmpty)) {
+                  if ((orderBloc.order.orderDetails.isNotEmpty &&
+                      isEmitAvailable)) {
                     orderBloc.add(EmitOrder());
                   }
+                  isEmitAvailable = false;
                 },
                 child: Container(
                     height: 34,

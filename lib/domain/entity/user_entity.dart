@@ -3,43 +3,46 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 
 class UserEntity {
-
   final String id;
-  String firstName;
-  String lastName;
-  final String phoneNumber;
-  String email;
-  String address;
-  String url;
+  String? firstName;
+  String? lastName;
+  String? phoneNumber;
+  String? email;
+  String? address;
+  String? url;
 
-
-  UserEntity({this.id = '0', this.firstName = '', this.lastName = '',this.phoneNumber ='',this.email = '',this.address = '',this.url = ''});
+  UserEntity(
+      {required this.id,
+      this.firstName,
+      this.lastName,
+      this.phoneNumber,
+      this.email,
+      this.address,
+      this.url});
 
   Map<String, dynamic> toJson() => {
-    'data': {
-      'id': int.parse(id),
-      'phoneNumber' : phoneNumber,
-      'firstName' :firstName,
-      'lastName' : lastName,
-      'email' :email,
-      'address': address,
-      'url' : url
-    },
-    "meta":{}
-  };
-
+        'data': {
+          'id': int.parse(id),
+          'phoneNumber': phoneNumber,
+          'firstName': firstName,
+          'lastName': lastName,
+          'email': email,
+          'address': address,
+          'url': url
+        },
+        "meta": {}
+      };
 
   factory UserEntity.fromJson(Map<String, dynamic> json) {
     final attributes = json['attributes'];
     return UserEntity(
         id: json['id'].toString(),
-        firstName: attributes['firstName'] as String,
-        lastName:  attributes['lastName'] as String,
-        phoneNumber: attributes['phoneNumber'] as String,
-        email:  attributes['email'] as String,
-        address:  attributes['address'] as String,
-        url: attributes['url'] ?? ''
-    );
+        firstName: attributes['firstName'],
+        lastName: attributes['lastName'],
+        phoneNumber: attributes['phoneNumber'],
+        email: attributes['email'],
+        address: attributes['address'],
+        url: attributes['url'] ?? '');
   }
 
   @override

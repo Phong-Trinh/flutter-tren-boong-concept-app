@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../../domain/entity/coupon_entity.dart';
 import '../../domain/entity/order_detail_entity.dart';
 import '../../utility/formater.dart';
+import '../../utility/save_data.dart';
+import '../promotion/promotion.dart';
+import '../widgets/pop_over.dart';
 
 class DetailAppliedCoupon extends StatelessWidget {
   final CouponEntity? coupon;
@@ -24,6 +27,8 @@ class DetailAppliedCoupon extends StatelessWidget {
                 GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
+                      SaveData.scaffoldKey.currentState!.showBottomSheet(
+                          (context) => const Popover(child: PromotionPopup()));
                     },
                     child: Container(
                         height: 30,

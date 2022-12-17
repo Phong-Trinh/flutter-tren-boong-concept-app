@@ -7,6 +7,11 @@ class OrderRepository {
   Future<void> createReceipt(OrderEntity order) async {
     List<int?> listId = await Future.wait(order.orderDetails
         .map((detail) => ReceiptDetailService.createReceiptDetail(detail)));
+    await Future.wait(order.orderDetails.map((detail) async {
+      if (detail.product.type == 'card') {
+        //await CardService.
+      }
+    }));
     if (listId.contains(null)) {
       throw Exception('Create receipt detail exception');
     }
@@ -16,8 +21,8 @@ class OrderRepository {
       if (orderId == null) {
         throw Exception('Create order exception');
       }
-      bool checkPayment =
-          await MomoPaymentService.createTransaction('1', order.totalPrice);
+      bool checkPayment = await MomoPaymentService.createTransaction(
+          orderId!.toString(), order.totalPrice);
       if (checkPayment == false) {
         throw Exception('Create order exception');
       }

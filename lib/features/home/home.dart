@@ -6,6 +6,7 @@ import '../../domain/bloc/order/order_bloc.dart';
 import '../../domain/bloc/order/order_event.dart';
 import '../../infrastructure/repository/card_repository.dart';
 import '../../infrastructure/repository/order_repository.dart';
+import '../../utility/save_data.dart';
 import '../order/short_order_bar.dart';
 import '../widgets/utility_bar.dart';
 import 'home_screen.dart';
@@ -18,12 +19,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-  int _currentPageIndex = 0;
+  final GlobalKey<ScaffoldState> _scaffoldKey = SaveData.scaffoldKey;
+  int currentPageIndex = 0;
 
   void _changePage(int index) {
     setState(() {
-      _currentPageIndex = index;
+      currentPageIndex = index;
     });
   }
 
