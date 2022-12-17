@@ -64,16 +64,22 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
   void addProduct(ProductEntity product) {
     bool checkDuplicate = false;
-    order.orderDetails.forEach((element) {
+    for (var element in order.orderDetails) {
       if (element.product.name == product.name) {
         checkDuplicate = true;
         element.quantity += 1;
       }
-    });
+    }
 
     if (checkDuplicate == false) {
       order.orderDetails.add(OrderDetailEntity(
           product: product, quantity: 1, price: product.price));
+    }
+
+    if (product.type == 'card') {
+      product.available = false;
+      SaveData.selectedCardProducts.add(product.id);
+      print(SaveData.selectedCardProducts.length);
     }
     order.totalPrice += product.price;
   }

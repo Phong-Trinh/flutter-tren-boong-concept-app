@@ -8,4 +8,5 @@ class SaveData {
   static GoogleSignIn googleSignIn = GoogleSignIn(
     scopes: <String>['email'],
   );
+  static List<String> selectedCardProducts = [];
 }

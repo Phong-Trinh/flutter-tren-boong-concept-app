@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tren_boong_concept/infrastructure/repository/card_repository.dart';
+import '../../../utility/save_data.dart';
 import '../main_card/main_card_bloc.dart';
 import 'user_cards_event.dart';
 import 'user_cards_state.dart';
@@ -24,7 +25,7 @@ class UserCardsBloc extends Bloc<UserCardsEvent, UserCardsState> {
   Future<void> fetchCardsEvent(
       GetCardsEvent event, Emitter<UserCardsState> state) async {
     emit(CardsLoadingState());
-    var cards = _cardRepository.fetchCardsByUser('id');
+    var cards = await _cardRepository.fetchCardsByUser(SaveData.userId);
     try {
       emit(CardsLoadSuccessState(cards));
     } catch (e) {
