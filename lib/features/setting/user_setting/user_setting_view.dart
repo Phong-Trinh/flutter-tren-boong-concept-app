@@ -23,7 +23,7 @@ class UserSettingDetail extends StatefulWidget {
 class _UserSettingDetailState extends State<UserSettingDetail> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool editMode = false;
-  UserEntity _userEntity = UserEntity();
+  late UserEntity _userEntity;
   XFile? _xFile;
   File? _file;
 
@@ -138,7 +138,7 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                                       Color.fromARGB(255, 234, 146, 57),
                                   backgroundImage: _file == null
                                       ? (state.user!.url != ''
-                                          ? NetworkImage(state.user!.url)
+                                          ? NetworkImage(state.user!.url!)
                                           : const NetworkImage(
                                                   'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/800px-User_icon_2.svg.png')
                                               as ImageProvider)
