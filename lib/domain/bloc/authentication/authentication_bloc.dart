@@ -23,6 +23,7 @@ class AuthenticationBloc
     on<LoginByGoogleEvent>(signInEmailEvent);
     on<UpdateDataUser>(updateUserEvent);
     on<UpdateAvataUser>(updateAvatarEvent);
+    on<SignoutUserEvent>(signoutUserEvent);
   }
   final UserRepository _userRepository;
 
@@ -39,6 +40,18 @@ class AuthenticationBloc
     } catch (e) {
       emit(UnauthenticatedState(null));
     }
+  }
+
+  Future<void> signoutUserEvent(
+      SignoutUserEvent event, Emitter<AuthenticationState> state) async {
+    emit(LoginLoadingState(null));
+    await Future.delayed(const Duration(seconds: 2));
+    try {
+      SaveData.userId = '';
+      _userRepository.signOutUser();
+      emit(UnauthenticatedState(null));
+    } catch (e) {}
+    emit(UnauthenticatedState(null));
   }
 
   Future<void> signInEmailEvent(

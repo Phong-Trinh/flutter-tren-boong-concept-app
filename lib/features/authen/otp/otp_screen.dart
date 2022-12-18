@@ -30,35 +30,31 @@ class _OtpScreenState extends State<OtpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SizedBox(
-      width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.only(right: 15, left: 15, top: 50),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Image.asset(
-                "assets/image/logo.png",
-                width: 250,
-                height: 130,
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                "Xác nhận mã OTP",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  height: 1.5,
-                ),
-              ),
-              Text("Mã đã được gửi đến " +
-                  Formater.hidePhoneNumbFormat(SaveData.userPhoneNumb)),
-              OtpForm()
-            ],
-          ),
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.black),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: Text("Mã xác thực OTP", style: TextStyle(color: Colors.black)),
         ),
-      ),
-    ));
+        body: SizedBox(
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 15, left: 15, top: 15),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Image.asset(
+                    "assets/image/logo.png",
+                    width: 250,
+                    height: 130,
+                  ),
+                  Text("Điền OTP vừa được gửi đến: " +
+                      Formater.hidePhoneNumbFormat(SaveData.userPhoneNumb)),
+                  OtpForm()
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 }

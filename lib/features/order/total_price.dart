@@ -27,16 +27,15 @@ class TotalPrice extends StatelessWidget {
                     : '-${Formater.vndFormat(0)}'),
             PayPrice(
                 title: 'Số tiền thanh toán',
-                price: Formater.vndFormat(order.coupon != null
-                    ? order.totalPrice - order.coupon!.couponPrice
-                    : order.totalPrice))
+                price: Formater.vndFormat(order.totalPrice))
           ],
         ));
   }
 
   String generatePrice(OrderEntity order) {
-    return Formater.vndFormat(order.totalPrice);
-    ;
+    return Formater.vndFormat(order.coupon != null
+        ? order.totalPrice + order.coupon!.couponPrice
+        : order.totalPrice);
   }
 }
 

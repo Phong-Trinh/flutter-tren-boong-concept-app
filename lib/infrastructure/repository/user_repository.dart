@@ -4,15 +4,27 @@ import '../remote_source/user_service.dart';
 
 class UserRepository {
   Future<UserEntity?> fetchUserByPhoneNumber(String phoneNumb) async {
-    return await UserService.getUserByPhoneNumber(phoneNumb);
+    var user = await UserService.getUserByPhoneNumber(phoneNumb);
+    if (user != null) {
+      UserService.saveUserLogin(user.id);
+    }
+    return user;
   }
 
   Future<UserEntity?> fetchUserByEmail(String email) async {
-    return await UserService.getUserByEmail(email);
+    var user = await UserService.getUserByEmail(email);
+    if (user != null) {
+      UserService.saveUserLogin(user.id);
+    }
+    return user;
   }
 
   Future<UserEntity?> fetchAlreadyUser() async {
-    return await UserService.getUserLogedin();
+    var user = await UserService.getUserLogedin();
+    if (user != null) {
+      UserService.saveUserLogin(user.id);
+    }
+    return user;
   }
 
   Future<bool> sendOtpToUser(String phoneNumb, String otpCode) async {
@@ -25,5 +37,9 @@ class UserRepository {
 
   Future<UserEntity?> createUserWithEmail(String email) async {
     return await UserService.createUserWithEmail(email);
+  }
+
+  Future<void> signOutUser() async {
+    return await UserService.unsaveUserLogin();
   }
 }

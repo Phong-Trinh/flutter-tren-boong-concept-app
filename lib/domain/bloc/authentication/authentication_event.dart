@@ -35,3 +35,5 @@ class ConfirmPhoneNumberEvent extends AuthenticationEvent {
 
   ConfirmPhoneNumberEvent(this.phoneNumb);
 }
+
+class SignoutUserEvent extends AuthenticationEvent {}

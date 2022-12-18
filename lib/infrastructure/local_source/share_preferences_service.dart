@@ -11,4 +11,10 @@ class SharedPreferencesService {
     String? action = prefs.getString('userId');
     return action;
   }
+
+  static Future<bool> removeUserId() async {
+    var prefs = await SharedPreferences.getInstance();
+    bool action = await prefs.clear();
+    return action;
+  }
 }
