@@ -45,6 +45,14 @@ class UserService {
     }
   }
 
+  static Future<void> unsaveUserLogin() async {
+    try {
+      await SharedPreferencesService.removeUserId();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   static Future<UserEntity?> getUserLogedin() async {
     String? id;
     UserEntity? user;

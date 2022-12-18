@@ -49,6 +49,7 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
     on<AddCoupon>((event, emit) async {
       order.coupon = event.coupon;
+      order.totalPrice -= event.coupon.couponPrice;
       SaveData.selectedCouponId = event.coupon.id;
       emit(OrderUpdateSuccess(order));
     });
@@ -72,22 +73,16 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
 
   void addProduct(ProductEntity product) {
     bool checkDuplicate = false;
-    for (var element in order.orderDetails) {
+    order.orderDetails.forEach((element) {
       if (element.product.name == product.name) {
         checkDuplicate = true;
         element.quantity += 1;
       }
-    }
+    });
 
     if (checkDuplicate == false) {
       order.orderDetails.add(OrderDetailEntity(
           product: product, quantity: 1, price: product.price));
-    }
-
-    if (product.type == 'card') {
-      product.available = false;
-      SaveData.selectedCardProducts.add(product.id);
-      print(SaveData.selectedCardProducts.length);
     }
     order.totalPrice += product.price;
   }
@@ -105,11 +100,6 @@ class OrderBloc extends Bloc<OrderEvent, OrderState> {
     });
     if (removedDetail != null) {
       order.orderDetails.remove(removedDetail);
-    }
-
-    if (product.type == 'card') {
-      SaveData.selectedCardProducts
-          .removeWhere((element) => element == product.id);
     }
 
     order.totalPrice -= product.price;

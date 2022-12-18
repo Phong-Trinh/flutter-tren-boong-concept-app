@@ -48,16 +48,6 @@ class _OtpScreenState extends State<OtpScreen> {
                     width: 250,
                     height: 130,
                   ),
-                  // const SizedBox(height: 10),
-                  // const Text(
-                  //   "Xác nhận mã OTP",
-                  //   style: TextStyle(
-                  //     fontSize: 20,
-                  //     fontWeight: FontWeight.bold,
-                  //     color: Colors.black,
-                  //     height: 1.5,
-                  //   ),
-                  // ),
                   Text("Điền OTP vừa được gửi đến: " +
                       Formater.hidePhoneNumbFormat(SaveData.userPhoneNumb)),
                   OtpForm()

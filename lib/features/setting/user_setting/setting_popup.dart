@@ -1,10 +1,47 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tren_boong_concept/domain/bloc/authentication/authentication_bloc.dart';
 import 'package:tren_boong_concept/features/setting/user_setting/user_setting_view.dart';
+
+import '../../../domain/bloc/authentication/authentication_event.dart';
 
 class SettingPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Future<void> _showMyDialog() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'Đăng xuất',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            ),
+            content: const SingleChildScrollView(
+              child: Text('Bạn thật sự muốn đăng xuất khỏi tài khoản?'),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text('BỎ QUA'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: Text('ĐĂNG XUẤT'),
+                onPressed: () {
+                  // call Logout Function here
+                  context.read<AuthenticationBloc>().add(SignoutUserEvent());
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: SingleChildScrollView(
@@ -99,23 +136,34 @@ class SettingPopup extends StatelessWidget {
                     const Divider(
                       color: Colors.brown,
                     ),
-                    const ListTile(
-                      leading: Icon(Icons.details),
-                      title: Text("Giới thiệu"),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.black,
+                    ListTile(
+                      onTap: () {
+                        // Navigator.of(context).push(MaterialPageRoute(
+                        //     builder: (context) => const AboutUs()));
+                      },
+                      leading: const Icon(Icons.details),
+                      title: const Text("Giới thiệu"),
+                      trailing: InkWell(
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                     const Divider(
                       color: Colors.brown,
                     ),
-                    const ListTile(
-                      leading: Icon(Icons.logout),
-                      title: Text("Đăng Xuất"),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.black,
+                    ListTile(
+                      onTap: () {
+                        _showMyDialog();
+                      },
+                      leading: const Icon(Icons.logout),
+                      title: const Text("Đăng xuất"),
+                      trailing: InkWell(
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ],
