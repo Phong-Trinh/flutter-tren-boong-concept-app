@@ -50,7 +50,7 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
               setState(() {
                 persistentBottomSheetController =
                     widget.scaffoldKey.currentState!.showBottomSheet(
-                            (context) => const Popover(child: ListCard()));
+                        (context) => const Popover(child: ListCard()));
               });
             },
           ),
@@ -61,11 +61,11 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
                 setState(() {
                   persistentBottomSheetController =
                       widget.scaffoldKey.currentState!.showBottomSheet(
-                              (context) => const Popover(child: MenuPopup()));
+                          (context) => const Popover(child: MenuPopup()));
                 });
               }
-            // child: Text("Orders")
-          ),
+              // child: Text("Orders")
+              ),
           IconButton(
               icon: const Icon(Icons.videogame_asset),
               tooltip: ("promotion"),
@@ -73,16 +73,16 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
                 setState(() {
                   persistentBottomSheetController =
                       widget.scaffoldKey.currentState!.showBottomSheet(
-                              (context) => Popover(child: PromotionPopup()));
+                          (context) => Popover(child: PromotionPopup()));
                 });
               }),
           IconButton(
             icon: const Icon(Icons.settings),
-            tooltip: ("event"),
+            tooltip: ("setting"),
             onPressed: () {
               setState(() {
-                widget.scaffoldKey.currentState!
-                    .showBottomSheet((context) => Popover(child: SettingPopup()));
+                widget.scaffoldKey.currentState!.showBottomSheet(
+                    (context) => Popover(child: SettingPopup()));
               });
             },
           ),

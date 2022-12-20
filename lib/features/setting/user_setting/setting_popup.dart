@@ -5,6 +5,7 @@ import 'package:tren_boong_concept/domain/bloc/authentication/authentication_blo
 import 'package:tren_boong_concept/features/setting/user_setting/user_setting_view.dart';
 
 import '../../../domain/bloc/authentication/authentication_event.dart';
+import 'about_us.dart';
 
 class SettingPopup extends StatelessWidget {
   @override
@@ -32,7 +33,6 @@ class SettingPopup extends StatelessWidget {
               TextButton(
                 child: Text('ĐĂNG XUẤT'),
                 onPressed: () {
-                  // call Logout Function here
                   context.read<AuthenticationBloc>().add(SignoutUserEvent());
                 },
               ),
@@ -138,8 +138,8 @@ class SettingPopup extends StatelessWidget {
                     ),
                     ListTile(
                       onTap: () {
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (context) => const AboutUs()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const AboutUs()));
                       },
                       leading: const Icon(Icons.details),
                       title: const Text("Giới thiệu"),

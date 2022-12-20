@@ -36,79 +36,91 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
           appBar: AppBar(
             centerTitle: true,
             backgroundColor: Color.fromARGB(255, 234, 146, 57),
-            title: const Text("Profile"),
+            title: const Text("Profile",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
             actions: [
               Align(
                   alignment: Alignment.center,
                   child: editMode
-                      ? InkWell(
-                          child: const Text("Lưu"),
-                          onTap: () {
-                            if (_formKey.currentState!.validate()) {
-                              showDialog(
-                                  context: context,
-                                  builder: ((context) {
-                                    return StatefulBuilder(
-                                      builder: ((BuildContext context,
-                                          StateSetter setState) {
-                                        return AlertDialog(
-                                          title: const Text("Lưu Thông Tin"),
-                                          content: SizedBox(
-                                            width: 100,
-                                            height: 100,
-                                            child: Column(
-                                              children: [
-                                                const Text(
-                                                    "Bạn chắc chắn muốn lưu thông tin?"),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.end,
-                                                  children: [
-                                                    OutlinedButton(
-                                                        onPressed: () {
+                      ? Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: InkWell(
+                            child: const Text("Lưu",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w700)),
+                            onTap: () {
+                              if (_formKey.currentState!.validate()) {
+                                showDialog(
+                                    context: context,
+                                    builder: ((context) {
+                                      return StatefulBuilder(
+                                        builder: ((BuildContext context,
+                                            StateSetter setState) {
+                                          return AlertDialog(
+                                            title: const Text("Lưu Thông Tin"),
+                                            content: SizedBox(
+                                              width: 100,
+                                              height: 100,
+                                              child: Column(
+                                                children: [
+                                                  const Text(
+                                                      "Bạn chắc chắn muốn lưu thông tin?"),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    children: [
+                                                      OutlinedButton(
+                                                          onPressed: () {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                          },
+                                                          child: const Text(
+                                                              "Huỷ")),
+                                                      const SizedBox(
+                                                        width: 20,
+                                                      ),
+                                                      OutlinedButton(
+                                                        onPressed: () async {
+                                                          context
+                                                              .read<
+                                                                  AuthenticationBloc>()
+                                                              .add(UpdateDataUser(
+                                                                  _userEntity));
+                                                          setState(() {
+                                                            editMode = false;
+                                                          });
                                                           Navigator.of(context)
                                                               .pop();
                                                         },
-                                                        child:
-                                                            const Text("Huỷ")),
-                                                    const SizedBox(
-                                                      width: 20,
-                                                    ),
-                                                    OutlinedButton(
-                                                      onPressed: () async {
-                                                        context
-                                                            .read<
-                                                                AuthenticationBloc>()
-                                                            .add(UpdateDataUser(
-                                                                _userEntity));
-                                                        setState(() {
-                                                          editMode = false;
-                                                        });
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                      },
-                                                      child: const Text(
-                                                          "Xác nhận"),
-                                                    )
-                                                  ],
-                                                )
-                                              ],
+                                                        child: const Text(
+                                                            "Xác nhận"),
+                                                      )
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        );
-                                      }),
-                                    );
-                                  }));
-                            } else {}
-                          },
+                                          );
+                                        }),
+                                      );
+                                    }));
+                              } else {}
+                            },
+                          ),
                         )
-                      : InkWell(
-                          child: const Text("Chỉnh sửa"),
-                          onTap: () {
-                            setState(() {
-                              editMode = true;
-                            });
-                          },
+                      : Padding(
+                          padding: const EdgeInsets.only(right: 10.0),
+                          child: InkWell(
+                            child: const Text("Chỉnh sửa",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w700)),
+                            onTap: () {
+                              setState(() {
+                                editMode = true;
+                              });
+                            },
+                          ),
                         )),
             ],
           ),

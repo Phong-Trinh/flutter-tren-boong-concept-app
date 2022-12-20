@@ -19,7 +19,7 @@ class TotalPrice extends StatelessWidget {
             const Text('Tổng cộng',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
             const SizedBox(height: 25),
-            DetailPrice(title: 'Thành tiền', price: generatePrice(order)),
+            DetailPrice(title: 'Tổng tiền', price: generatePrice(order)),
             DetailPrice(
                 title: 'Giảm giá',
                 price: order.coupon != null
