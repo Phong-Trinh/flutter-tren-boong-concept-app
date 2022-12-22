@@ -92,7 +92,8 @@ class SettingPopup extends StatelessWidget {
                     const Divider(
                       color: Colors.brown,
                     ),
-                    const ListTile(
+                    ListTile(
+                      onTap: () {},
                       leading: Icon(Icons.notifications),
                       title: Text("Thông báo"),
                       trailing: Icon(
@@ -103,7 +104,20 @@ class SettingPopup extends StatelessWidget {
                     const Divider(
                       color: Colors.brown,
                     ),
-                    const ListTile(
+                    ListTile(
+                      onTap: () {},
+                      leading: Icon(Icons.history),
+                      title: Text("lịch sử mua hàng"),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const Divider(
+                      color: Colors.brown,
+                    ),
+                    ListTile(
+                      onTap: () {},
                       leading: Icon(Icons.language),
                       title: Text("Ngôn ngữ"),
                       trailing: Icon(
@@ -114,7 +128,8 @@ class SettingPopup extends StatelessWidget {
                     const Divider(
                       color: Colors.brown,
                     ),
-                    const ListTile(
+                    ListTile(
+                      onTap: () {},
                       leading: Icon(Icons.security_rounded),
                       title: Text("Quyền riêng tư & Bảo mật"),
                       trailing: Icon(
@@ -125,7 +140,8 @@ class SettingPopup extends StatelessWidget {
                     const Divider(
                       color: Colors.brown,
                     ),
-                    const ListTile(
+                    ListTile(
+                      onTap: () {},
                       leading: Icon(Icons.help),
                       title: Text("Trợ gúp & Hỗ trợ"),
                       trailing: Icon(
@@ -142,7 +158,7 @@ class SettingPopup extends StatelessWidget {
                             builder: (context) => const AboutUs()));
                       },
                       leading: const Icon(Icons.details),
-                      title: const Text("Giới thiệu"),
+                      title: const Text("Về chúng tôi"),
                       trailing: InkWell(
                         child: Icon(
                           Icons.arrow_forward_ios,
