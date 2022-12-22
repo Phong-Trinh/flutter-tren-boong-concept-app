@@ -18,6 +18,7 @@ import 'firebase_options.dart';
 import 'infrastructure/repository/user_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'utility/save_data.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-
   runApp(const MyApp());
 }
 
@@ -40,10 +40,22 @@ class MyApp extends StatefulWidget {
 
   @override
   State<MyApp> createState() => _MyAppState();
+   static void setLocale(BuildContext context, Locale newLocale) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state?.setLocale(newLocale);
+  }
 }
 
 class _MyAppState extends State<MyApp> {
-  FirebaseCloudMessagingNotifications firebaseCloudMessagingNotifications = FirebaseCloudMessagingNotifications();
+   // TODO: define local and setLocale and on didChangedependies initilas
+   Locale? _locale;
+  setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+  FirebaseCloudMessagingNotifications firebaseCloudMessagingNotifications =
+      FirebaseCloudMessagingNotifications();
 
   Uri? _initialUri;
   Uri? _latestUri;
@@ -112,6 +124,12 @@ class _MyAppState extends State<MyApp> {
                   return MaterialApp(
                     navigatorKey: navigatorKey,
                     debugShowCheckedModeBanner: false,
+                    //new
+                    localizationsDelegates:
+                        AppLocalizations.localizationsDelegates,
+                    supportedLocales: AppLocalizations.supportedLocales,
+                    // locale: Locale('en', ''),
+                    locale: _locale,
                     home: const HomePage(),
                   );
                 }

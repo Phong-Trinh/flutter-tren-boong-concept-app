@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_button.dart';
 import 'order_result.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrderFail extends StatelessWidget {
   final double screenWidth;
@@ -28,7 +29,7 @@ class OrderFail extends StatelessWidget {
         ),
         SizedBox(height: screenHeight * 0.1),
         Text(
-          "Thất bại!",
+          AppLocalizations.of(context)!.failure,
           style: TextStyle(
             color: themeColor,
             fontWeight: FontWeight.w600,
@@ -37,7 +38,7 @@ class OrderFail extends StatelessWidget {
         ),
         SizedBox(height: screenHeight * 0.01),
         Text(
-          "Giao dịch bị gián đoạn",
+          AppLocalizations.of(context)!.transactionInterrupted,
           style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.w400,
@@ -46,7 +47,7 @@ class OrderFail extends StatelessWidget {
         ),
         SizedBox(height: screenHeight * 0.05),
         Text(
-          "Có vấn đề với đơn hàng của bạn, vui lòng kiểm tra đơn hàng và thử lại",
+          AppLocalizations.of(context)!.orderProlem,
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.black54,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../domain/entity/order_detail_entity.dart';
 import '../../utility/formater.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DetailAPaymentMethod extends StatelessWidget {
   const DetailAPaymentMethod({super.key});
@@ -14,8 +15,8 @@ class DetailAPaymentMethod extends StatelessWidget {
           children: [
             const SizedBox(height: 20),
             Row(
-              children: const [
-                Text('Hình thức thanh toán',
+              children: [
+                Text(AppLocalizations.of(context)!.paymentMethod,
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
               ],
@@ -23,13 +24,13 @@ class DetailAPaymentMethod extends StatelessWidget {
             const SizedBox(height: 25),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Container(
-                  child: Row(children: const [
+                  child: Row(children: [
                 Image(
                     height: 32,
                     width: 32,
                     image: AssetImage('assets/icon/momo-icon.png')),
                 SizedBox(width: 8),
-                Text('Thanh toán bằng Ví Momo',
+                Text(AppLocalizations.of(context)!.payWithMomoWallet,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                         fontWeight: FontWeight.w500, fontSize: 16, height: 2))

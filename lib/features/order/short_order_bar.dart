@@ -8,6 +8,7 @@ import 'order_detail_price.dart';
 import 'order_list.dart';
 import 'order_coupon.dart';
 import 'order_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShortOrderBar extends StatefulWidget {
   const ShortOrderBar({super.key});
@@ -47,7 +48,8 @@ class ShortOrderBarState extends State<ShortOrderBar> {
                             const SizedBox(height: 5),
                             OrderList(
                                 orderList: order.orderDetails.isEmpty
-                                    ? 'Chưa có sản phẩm'
+                                    ? AppLocalizations.of(context)!
+                                        .thereAreNoProductsYet
                                     : Formater.getStringListOrderName(
                                         context.read<OrderBloc>().order))
                           ])),

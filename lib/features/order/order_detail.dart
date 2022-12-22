@@ -6,6 +6,7 @@ import 'detail_applied_coupon.dart';
 import 'detail_paymet_method.dart';
 import 'detail_products.dart';
 import 'total_price.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrderDetail extends StatefulWidget {
   final OrderBloc orderBloc;
@@ -27,7 +28,7 @@ class _OrderDetailState extends State<OrderDetail> {
             width: double.infinity,
             color: Colors.white,
             child: Center(
-                child: Text('Xác nhận đơn hàng',
+                child: Text(AppLocalizations.of(context)!.orderConfirmation,
                     style:
                         TextStyle(fontSize: 16, fontWeight: FontWeight.w700)))),
         SizedBox(height: 25),

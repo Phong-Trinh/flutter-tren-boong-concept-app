@@ -4,6 +4,7 @@ import '../../domain/bloc/order/order_event.dart';
 import '../../domain/entity/order_entity.dart';
 import '../../utility/formater.dart';
 import 'order_result.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ConfirmOrder extends StatelessWidget {
   final OrderBloc orderBloc;
@@ -51,8 +52,8 @@ class ConfirmOrder extends StatelessWidget {
                     decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(15))),
-                    child: const Center(
-                        child: Text('ĐẶT HÀNG',
+                    child: Center(
+                        child: Text(AppLocalizations.of(context)!.order,
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Color.fromARGB(255, 202, 97, 5),
