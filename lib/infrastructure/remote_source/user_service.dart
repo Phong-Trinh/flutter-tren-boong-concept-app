@@ -1,5 +1,6 @@
 import 'dart:convert';
 import '../../domain/entity/user_entity.dart';
+import '../../utility/save_data.dart';
 import '../local_source/share_preferences_service.dart';
 import 'api_constant.dart';
 import 'package:http/http.dart' as http;
@@ -99,13 +100,35 @@ class UserService {
     try {
       var response = await sendPostUser(null, email);
       if (response.statusCode == 200) {
-        print(response.body);
         return praseUserFromJson(response.body);
       }
     } catch (e) {
       print(e.toString());
     }
     return null;
+  }
+
+  static Future<UserEntity?> updateUserDeviceToken(String token) async {
+    try {
+      var response = await putFcmToken(token);
+      print(response.body);
+      if (response.statusCode == 200) {
+        return praseUserFromJson(response.body);
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  static Future<http.Response> putFcmToken(String token) {
+    return http.put(
+      Uri.parse('${ApiConstant.baseUrl}/app-users/${SaveData.userId}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, Object>{
+        "data": {"fcm": token}
+      }),
+    );
   }
 
   static Future<http.Response> sendPostUser(

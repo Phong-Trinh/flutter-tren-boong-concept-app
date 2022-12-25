@@ -36,4 +36,10 @@ class ConfirmPhoneNumberEvent extends AuthenticationEvent {
   ConfirmPhoneNumberEvent(this.phoneNumb);
 }
 
+class UpdateDeveiceFcmToken extends AuthenticationEvent {
+  final String token;
+
+  UpdateDeveiceFcmToken(this.token);
+}
+
 class SignoutUserEvent extends AuthenticationEvent {}

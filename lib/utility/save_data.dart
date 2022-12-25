@@ -11,4 +11,5 @@ class SaveData {
   );
   static List<String> selectedCardProducts = [];
   static GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  static late String? fcmToken;
 }
