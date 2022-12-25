@@ -39,7 +39,7 @@ class ListDetailProduct extends StatelessWidget {
                     },
                     child: Container(
                         height: 30,
-                        width: 55,
+                        width: 60,
                         decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 243, 227, 214),
                             borderRadius:

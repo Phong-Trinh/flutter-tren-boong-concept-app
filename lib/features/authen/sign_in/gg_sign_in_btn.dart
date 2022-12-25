@@ -5,6 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../../../domain/bloc/authentication/authentication_bloc.dart';
 import '../../../domain/bloc/authentication/authentication_event.dart';
 import '../../../utility/save_data.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class GoogleSigninButton extends StatefulWidget {
   GoogleSigninButton({super.key});
@@ -61,15 +62,15 @@ class _GoogleSigninButtonState extends State<GoogleSigninButton> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children:  [
                   Image(
                     image: AssetImage("assets/icon/google-icon.png"),
                     height: 25.0,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding: EdgeInsets.only(left: 10),
                     child: Text(
-                      'Sign in with Google',
+                      AppLocalizations.of(context)!.signInWithGoogle,
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,

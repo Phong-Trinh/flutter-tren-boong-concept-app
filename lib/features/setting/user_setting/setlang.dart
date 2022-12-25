@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:tren_boong_concept/features/localization/language.dart';
 import 'package:tren_boong_concept/main.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -51,14 +50,14 @@ class SetLang extends StatelessWidget {
         ],
       ),
       body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: ListView(
             shrinkWrap: true,
             children: [
-              // ListTile(
-              //   onTap: () {},
-              //   title: const Text("chọn ngôn ngữ"),
-              // ),
+              ListTile(
+                onTap: () {},
+                title: Text(AppLocalizations.of(context)!.languageTest),
+              ),
             ],
           )),
     );

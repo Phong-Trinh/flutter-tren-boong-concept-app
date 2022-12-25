@@ -33,7 +33,7 @@ class DetailAppliedCoupon extends StatelessWidget {
                     },
                     child: Container(
                         height: 30,
-                        width: 62,
+                        width: 60,
                         decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 243, 227, 214),
                             borderRadius:
@@ -51,7 +51,9 @@ class DetailAppliedCoupon extends StatelessWidget {
               Flexible(
                   child: Container(
                       child: Text(
-                          coupon != null ? coupon!.title : AppLocalizations.of(context)!.doNotApply,
+                          coupon != null
+                              ? coupon!.title
+                              : AppLocalizations.of(context)!.doNotApply,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                               fontWeight: FontWeight.w500, height: 2)))),

@@ -8,6 +8,7 @@ import '../../../domain/bloc/authentication/authentication_state.dart';
 import '../../../utility/save_data.dart';
 import '../otp/otp_screen.dart';
 import 'gg_sign_in_btn.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -39,7 +40,7 @@ class LoginScreenState extends State<LoginScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Đăng nhập',
+                  Text(AppLocalizations.of(context)!.signIn,
                       style: GoogleFonts.titilliumWeb(
                           fontSize: 18, fontWeight: FontWeight.w700)),
                   const SizedBox(height: 5),
@@ -59,14 +60,15 @@ class LoginScreenState extends State<LoginScreen> {
                               inputFormatters: [
                                 FilteringTextInputFormatter.digitsOnly
                               ],
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 20, horizontal: 20),
                                 border: OutlineInputBorder(),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black87),
                                 ),
-                                hintText: ("Nhập số điện thoại"),
+                                hintText: (AppLocalizations.of(context)!
+                                    .enterPhoneNumberHint),
                                 //errorText: (""),
                               ),
                               // The validator receives the text that the user has entered.
@@ -75,7 +77,8 @@ class LoginScreenState extends State<LoginScreen> {
                                     value.isEmpty ||
                                     value.length < 10 ||
                                     !value.startsWith('0')) {
-                                  return 'Vui lòng nhập đúng số điện thoại';
+                                  return AppLocalizations.of(context)!
+                                      .pleaseEnterTheCorrectPhoneNumber;
                                 }
                                 return null;
                               },
@@ -97,16 +100,17 @@ class LoginScreenState extends State<LoginScreen> {
                                     );
                                   }
                                 },
-                                child: const Text("Tiếp theo"))),
+                                child:
+                                    Text(AppLocalizations.of(context)!.next))),
                       ],
                     ),
                   )
                 ],
               ),
               Expanded(child: Container()),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(20),
-                child: Text("Or"),
+                child: Text(AppLocalizations.of(context)!.or),
               ),
 
               ///button Google Sign

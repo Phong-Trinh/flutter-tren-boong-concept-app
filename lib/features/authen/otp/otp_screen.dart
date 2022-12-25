@@ -8,7 +8,7 @@ import '../../../infrastructure/repository/user_repository.dart';
 import '../../../utility/formater.dart';
 import '../../../utility/save_data.dart';
 import 'otp_form.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class OtpScreen extends StatefulWidget {
   OtpScreen({super.key});
 
@@ -34,7 +34,7 @@ class _OtpScreenState extends State<OtpScreen> {
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Text("Mã xác thực OTP", style: TextStyle(color: Colors.black)),
+          title: Text(AppLocalizations.of(context)!.otpVerificationCode, style: TextStyle(color: Colors.black)),
         ),
         body: SizedBox(
           width: double.infinity,
@@ -48,7 +48,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     width: 250,
                     height: 130,
                   ),
-                  Text("Điền OTP vừa được gửi đến: " +
+                  Text(AppLocalizations.of(context)!.enterOTPJustSendTo +
                       Formater.hidePhoneNumbFormat(SaveData.userPhoneNumb)),
                   OtpForm()
                 ],

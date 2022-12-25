@@ -112,27 +112,15 @@ class _SettingPopupState extends State<SettingPopup> {
                     // ),
                     // ListTile(
                     //   onTap: () {},
-                    //   leading: Icon(Icons.history),
-                    //   title: Text(AppLocalizations.of(context)!.orderHistory),
+                    //   leading: Icon(Icons.security_rounded),
+                    //   title: Text(
+                    //     AppLocalizations.of(context)!.privacyAndSecurity,
+                    //   ),
                     //   trailing: Icon(
                     //     Icons.arrow_forward_ios,
                     //     color: Colors.black,
                     //   ),
                     // ),
-                    const Divider(
-                      color: Colors.brown,
-                    ),
-                    ListTile(
-                      onTap: () {},
-                      leading: Icon(Icons.security_rounded),
-                      title: Text(
-                        AppLocalizations.of(context)!.privacyAndSecurity,
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.black,
-                      ),
-                    ),
                     const Divider(
                       color: Colors.brown,
                     ),

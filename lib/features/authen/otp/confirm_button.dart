@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/bloc/otp/otp_bloc.dart';
 import '../../../domain/bloc/otp/otp_event.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class ConfirmButton extends StatefulWidget {
   bool confirmEnable;
   final List<TextEditingController> inputControllers;
@@ -28,10 +28,10 @@ class ConfirmButtonState extends State<ConfirmButton> {
                 context.read<OtpBloc>().add(ConfirmOtp(getOtpString()));
               }
             : null,
-        child: const SizedBox(
+        child:  SizedBox(
             height: 40,
             child:
-                Center(child: Text('Xác thực', textAlign: TextAlign.center))));
+                Center(child: Text(AppLocalizations.of(context)!.confirm, textAlign: TextAlign.center))));
   }
 
   String getOtpString() {

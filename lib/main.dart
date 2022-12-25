@@ -40,20 +40,21 @@ class MyApp extends StatefulWidget {
 
   @override
   State<MyApp> createState() => _MyAppState();
-   static void setLocale(BuildContext context, Locale newLocale) {
+  static void setLocale(BuildContext context, Locale newLocale) {
     _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
     state?.setLocale(newLocale);
   }
 }
 
 class _MyAppState extends State<MyApp> {
-   // TODO: define local and setLocale and on didChangedependies initilas
-   Locale? _locale;
+  // TODO: define local and setLocale and on didChangedependies initilas
+  Locale? _locale;
   setLocale(Locale locale) {
     setState(() {
       _locale = locale;
     });
   }
+
   FirebaseCloudMessagingNotifications firebaseCloudMessagingNotifications =
       FirebaseCloudMessagingNotifications();
 
@@ -115,20 +116,22 @@ class _MyAppState extends State<MyApp> {
             child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
               builder: (BuildContext context, AuthenticationState state) {
                 if (state is UnauthenticatedState) {
-                  return const MaterialApp(
+                  return MaterialApp(
+                    localizationsDelegates:
+                        AppLocalizations.localizationsDelegates,
+                    supportedLocales: AppLocalizations.supportedLocales,
+                    locale: _locale,
                     debugShowCheckedModeBanner: false,
-                    home: LoginScreen(),
+                    home: const LoginScreen(),
                   );
                 }
                 if (state is AuthenticatedState) {
                   return MaterialApp(
                     navigatorKey: navigatorKey,
                     debugShowCheckedModeBanner: false,
-                    //new
                     localizationsDelegates:
                         AppLocalizations.localizationsDelegates,
                     supportedLocales: AppLocalizations.supportedLocales,
-                    // locale: Locale('en', ''),
                     locale: _locale,
                     home: const HomePage(),
                   );

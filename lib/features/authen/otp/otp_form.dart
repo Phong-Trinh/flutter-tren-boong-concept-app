@@ -10,6 +10,7 @@ import '../../../infrastructure/repository/user_repository.dart';
 import '../../../utility/save_data.dart';
 import 'confirm_button.dart';
 import 'resend_tap.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OtpForm extends StatefulWidget {
   OtpForm({Key? key}) : super(key: key);
@@ -170,7 +171,7 @@ class _OtpFormState extends State<OtpForm> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("Mã sẽ còn hiệu lực trong "),
+        Text(AppLocalizations.of(context)!.otpValidIn),
         TweenAnimationBuilder(
           tween: Tween(begin: 30.0, end: 0.0),
           duration: const Duration(seconds: 30),
@@ -190,7 +191,7 @@ class _OtpFormState extends State<OtpForm> {
   }
 
   Text failOtpText() {
-    return Text('Otp bạn nhập không đúng, vui lòng thử lại.',
+    return Text(AppLocalizations.of(context)!.failOTPText,
         style: TextStyle(color: Colors.red.shade400));
   }
 }

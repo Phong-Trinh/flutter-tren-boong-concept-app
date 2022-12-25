@@ -12,6 +12,7 @@ import 'package:uuid/uuid.dart';
 import '../../../domain/bloc/authentication/authentication_bloc.dart';
 import '../../../domain/bloc/authentication/authentication_state.dart';
 import '../../../infrastructure/remote_source/api_constant.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class UserSettingDetail extends StatefulWidget {
   const UserSettingDetail({super.key});
@@ -36,7 +37,7 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
           appBar: AppBar(
             centerTitle: true,
             backgroundColor: Color.fromARGB(255, 234, 146, 57),
-            title: const Text("Profile",
+            title: Text(AppLocalizations.of(context)!.profile,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
             actions: [
               Align(
@@ -45,7 +46,7 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                       ? Padding(
                           padding: const EdgeInsets.only(right: 10),
                           child: InkWell(
-                            child: const Text("Lưu",
+                            child: Text(AppLocalizations.of(context)!.save,
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w700)),
                             onTap: () {
@@ -57,14 +58,19 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                                         builder: ((BuildContext context,
                                             StateSetter setState) {
                                           return AlertDialog(
-                                            title: const Text("Lưu Thông Tin"),
+                                            title: Text(
+                                                AppLocalizations.of(context)!
+                                                    .saveInformation),
                                             content: SizedBox(
                                               width: 100,
                                               height: 100,
                                               child: Column(
                                                 children: [
-                                                  const Text(
-                                                      "Bạn chắc chắn muốn lưu thông tin?"),
+                                                  Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .wantToSaveInformation,
+                                                  ),
                                                   Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.end,
@@ -75,8 +81,11 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                                                                     context)
                                                                 .pop();
                                                           },
-                                                          child: const Text(
-                                                              "Huỷ")),
+                                                          child: Text(
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .cancel,
+                                                          )),
                                                       const SizedBox(
                                                         width: 20,
                                                       ),
@@ -93,8 +102,8 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                                                           Navigator.of(context)
                                                               .pop();
                                                         },
-                                                        child: const Text(
-                                                            "Xác nhận"),
+                                                        child: Text(
+                                                            AppLocalizations.of(context)!.confirm,),
                                                       )
                                                     ],
                                                   )
@@ -112,7 +121,7 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                       : Padding(
                           padding: const EdgeInsets.only(right: 10.0),
                           child: InkWell(
-                            child: const Text("Chỉnh sửa",
+                            child: Text(AppLocalizations.of(context)!.edit,
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w700)),
                             onTap: () {
@@ -220,7 +229,7 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("Tên"),
+                           Text(AppLocalizations.of(context)!.name),
                             const SizedBox(
                               height: 10,
                             ),
@@ -234,7 +243,7 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                                 initialValue: state.user?.firstName ?? "",
                                 enabled: editMode ? true : false,
                                 validator: (text) =>
-                                    text == "" ? "Không được để trống" : null,
+                                    text == "" ? AppLocalizations.of(context)!.noEmpty : null,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                 ),
@@ -245,7 +254,7 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("Họ (Tên đệm)"),
+                            Text(AppLocalizations.of(context)!.lastNameCushionName),
                             const SizedBox(
                               height: 10,
                             ),
@@ -259,7 +268,7 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                                 initialValue: state.user?.lastName ?? "",
                                 enabled: editMode ? true : false,
                                 validator: (text) =>
-                                    text == "" ? "Không được để trống" : null,
+                                    text == "" ? AppLocalizations.of(context)!.noEmpty : null,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
                                 ),
@@ -276,7 +285,7 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Email"),
+                         Text(AppLocalizations.of(context)!.email),
                         SizedBox(
                           height: 10,
                         ),
@@ -286,7 +295,7 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                           child: TextFormField(
                             initialValue: state.user?.email ?? "",
                             validator: (text) =>
-                                text == "" ? "Không được để trống" : null,
+                                text == "" ? AppLocalizations.of(context)!.noEmpty: null,
                             enabled: (state.user?.email == null && editMode)
                                 ? true
                                 : false,
@@ -307,7 +316,7 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Số điện thoại"),
+                         Text(AppLocalizations.of(context)!.phoneNumber),
                         const SizedBox(
                           height: 10,
                         ),
@@ -331,7 +340,7 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Địa Chỉ"),
+                        Text(AppLocalizations.of(context)!.address),
                         const SizedBox(
                           height: 10,
                         ),
@@ -342,7 +351,7 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                             initialValue: state.user?.address ?? "",
                             enabled: editMode ? true : false,
                             validator: (text) =>
-                                text == "" ? "Không được để trống" : null,
+                                text == "" ? AppLocalizations.of(context)!.noEmpty : null,
                             onChanged: (text) {
                               _userEntity.address = text;
                             },
