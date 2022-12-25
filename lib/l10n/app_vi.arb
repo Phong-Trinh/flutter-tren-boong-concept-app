@@ -1,4 +1,3 @@
-
 { 
 "@_SETTING_POPUP": {},
   "setting": "Cài đặt",
@@ -9,6 +8,12 @@
   "privacyAndSecurity": "Quyền riêng tư & Bảo mật",
   "aboutUs": "Về chúng tôi",
   "signOut": "Đăng xuất",
+  "skip":"Bỏ Qua",
+  "wantToLogOut": "Bạn thật sự muốn đăng xuất khỏi tài khoản?",
+"@_ABOUT_US_": {},
+  "trenBoongConcept":"Trên Boong Concept | ComeBack, một sản phẩm của Micro 7",
+  "version": "Phiên bản ứng dụng: 1.0.1",
+  "devInFo": "Thông tin nhà phát hành phần mềm",
 "@_NOTIFICATION_AREA": {},
   "promoRemind": "Hệ thống tự động áp dụng những ưu đãi tốt nhất cho đơn hàng.",
 "@_MENU_PRODUCT": {},
@@ -19,8 +24,8 @@
   "order": " Đặt hàng",
 "@_DETAIL_APPLIED_COUNPON": {},
   "change": "Thay đổi",
-  "coupon": "ưu đãi",
-  "mediumSize": "vừa ",
+  "coupon": "Ưu đãi",
+  "mediumSize": "Vừa ",
   "doNotApply": "Không áp dụng",
 "@_Detail_A_PAYMENT_METHOD": {},
   "paymentMethod": "Hình thức thanh toán",
@@ -55,7 +60,7 @@
   "enterPhoneNumberHint": "Nhập số điện thoại",
   "pleaseEnterTheCorrectPhoneNumber":"Vui lòng nhập đúng số điện thoại",
   "next": "Tiếp theo",
-  "or": "Hoặc ",
+  "or": "Hoặc",
 "@_GG_SIGN_IN_BTN": {},
   "signInWithGoogle": "Đăng nhập với Google"
 }

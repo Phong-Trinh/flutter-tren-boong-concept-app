@@ -55,10 +55,10 @@ class SetLang extends StatelessWidget {
           child: ListView(
             shrinkWrap: true,
             children: [
-              ListTile(
-                onTap: () {},
-                title: const Text("chọn ngôn ngữ"),
-              ),
+              // ListTile(
+              //   onTap: () {},
+              //   title: const Text("chọn ngôn ngữ"),
+              // ),
             ],
           )),
     );

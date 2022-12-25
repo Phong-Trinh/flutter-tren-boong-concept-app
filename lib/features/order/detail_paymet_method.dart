@@ -72,7 +72,7 @@ class DetailInforProduct extends StatelessWidget {
                 Text(generateProductName(item),
                     style: const TextStyle(
                         fontWeight: FontWeight.w700, height: 2)),
-                const Text('Vừa',
+                Text(AppLocalizations.of(context)!.mediumSize,
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,

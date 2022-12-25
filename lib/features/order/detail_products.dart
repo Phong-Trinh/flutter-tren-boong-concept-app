@@ -57,7 +57,9 @@ class ListDetailProduct extends StatelessWidget {
                 ? Container(
                     margin: EdgeInsets.only(bottom: 10),
                     width: double.infinity,
-                    child:  Text(AppLocalizations.of(context)!.thereAreNoProductsInTheCart,
+                    child: Text(
+                        AppLocalizations.of(context)!
+                            .thereAreNoProductsInTheCart,
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             color: Color.fromARGB(255, 212, 93, 3),
@@ -109,7 +111,7 @@ class _DetailInforProductState extends State<DetailInforProduct> {
                 Text(generateProductName(widget.item),
                     style: const TextStyle(
                         fontWeight: FontWeight.w700, height: 2)),
-                const Text('Vừa',
+                Text(AppLocalizations.of(context)!.mediumSize,
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,

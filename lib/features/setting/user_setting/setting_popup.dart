@@ -23,21 +23,21 @@ class _SettingPopupState extends State<SettingPopup> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text(
-              'Đăng xuất',
+              AppLocalizations.of(context)!.signOut,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
-            content: const SingleChildScrollView(
-              child: Text('Bạn thật sự muốn đăng xuất khỏi tài khoản?'),
+            content:  SingleChildScrollView(
+              child: Text(AppLocalizations.of(context)!.wantToLogOut),
             ),
             actions: <Widget>[
               TextButton(
-                child: Text('BỎ QUA'),
+                child: Text(AppLocalizations.of(context)!.skip),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
               ),
               TextButton(
-                child: Text('ĐĂNG XUẤT'),
+                child: Text(AppLocalizations.of(context)!.signOut),
                 onPressed: () {
                   context.read<AuthenticationBloc>().add(SignoutUserEvent());
                 },

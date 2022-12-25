@@ -73,10 +73,10 @@ class AuthenticationBloc
       CheckLoginEvent event, Emitter<AuthenticationState> emit) async {
     emit(LoginLoadingState(null));
     await Future.delayed(const Duration(seconds: 1));
-    // var user = await _userRepository.fetchAlreadyUser();
+    var user = await _userRepository.fetchAlreadyUser();
     //test
-    var user =
-        UserEntity(id: '1', firstName: 'Phong', phoneNumber: '0855556532');
+    // var user =
+    //     UserEntity(id: '1', firstName: 'Phong', phoneNumber: '0855556532');
     if (user == null) {
       emit(UnauthenticatedState(null));
     } else {
