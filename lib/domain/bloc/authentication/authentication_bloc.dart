@@ -24,6 +24,7 @@ class AuthenticationBloc
     on<UpdateDataUser>(updateUserEvent);
     on<UpdateAvataUser>(updateAvatarEvent);
     on<SignoutUserEvent>(signoutUserEvent);
+    on<UpdateDeveiceFcmToken>(updateFcmToken);
   }
   final UserRepository _userRepository;
 
@@ -67,6 +68,12 @@ class AuthenticationBloc
     } catch (e) {
       emit(UnauthenticatedState(null));
     }
+  }
+
+  Future<void> updateFcmToken(
+      UpdateDeveiceFcmToken event, Emitter<AuthenticationState> state) async {
+    var user = await _userRepository.updateUserDeviceToken(event.token);
+    SaveData.fcmToken = event.token;
   }
 
   Future<void> checkUserLoginBeforeEvent(

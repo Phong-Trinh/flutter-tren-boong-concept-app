@@ -39,6 +39,10 @@ class UserRepository {
     return await UserService.createUserWithEmail(email);
   }
 
+  Future<UserEntity?> updateUserDeviceToken(String token) async {
+    return await UserService.updateUserDeviceToken(token);
+  }
+
   Future<void> signOutUser() async {
     return await UserService.unsaveUserLogin();
   }
