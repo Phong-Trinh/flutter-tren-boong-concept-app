@@ -12,12 +12,11 @@ class SmsService {
         '${EndPoint}/SendOTP?loginName=AB9P2D9&sign=${generateMd5('PNDG4KNYL')}&serviceTypeId=30&phoneNumber=${phoneNumb}&message=${message}&brandName=ABENLA&callBack=false');
     print(url.toString());
     try {
-      // var response = await http.get(url);
-      // Map<String, dynamic> body = jsonDecode(response.body);
-      // if (body['Code'] == 203) {
-      //   return true;
-      // }
-      //gui hoai ton tien
+      var response = await http.get(url);
+      Map<String, dynamic> body = jsonDecode(response.body);
+      if (body['Code'] == 203) {
+        return true;
+      }
       return true;
     } catch (e) {
       print(e.toString());

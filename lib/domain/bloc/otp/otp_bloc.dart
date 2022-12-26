@@ -56,7 +56,7 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
   Future<void> checkOtpUserConfirm(
       ConfirmOtp event, Emitter<OtpState> emit) async {
     // check user's otp neu sai thi emit dugn thi goi authenBloc handle
-    if (event.otpCode == '1234') {
+    if (event.otpCode == otpCode) {
       _authBloc.add(LoginByPhoneNumberEvent(SaveData.userPhoneNumb));
     } else {
       emit(OtpFailCheck());
