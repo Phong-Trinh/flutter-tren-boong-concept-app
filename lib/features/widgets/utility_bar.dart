@@ -96,8 +96,8 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
                 });
               }),
           IconButton(
-            icon: const Icon(Icons.settings),
-            tooltip: ("setting"),
+            icon: const Icon(Icons.menu),
+            tooltip: ("more"),
             color: pressSetting ? Colors.black : Colors.green[700],
             onPressed: () {
               setState(() {

@@ -50,13 +50,30 @@ class SetLang extends StatelessWidget {
         ],
       ),
       body: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: ListView(
             shrinkWrap: true,
             children: [
               ListTile(
                 onTap: () {},
-                title: Text(AppLocalizations.of(context)!.languageTest),
+                title: Text(AppLocalizations.of(context)!.emailTrenBoong),
+                leading: const Icon(Icons.email),
+              ),
+              const Divider(
+                color: Colors.brown,
+              ),
+              ListTile(
+                onTap: () {},
+                title: Text(AppLocalizations.of(context)!.websiteTrenBoong),
+                leading: const Icon(Icons.facebook),
+              ),
+              const Divider(
+                color: Colors.brown,
+              ),
+              ListTile(
+                onTap: () {},
+                title: Text(AppLocalizations.of(context)!.addressTrenBoong),
+                leading: const Icon(Icons.location_city),
               ),
             ],
           )),

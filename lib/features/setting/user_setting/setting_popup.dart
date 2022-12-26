@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tren_boong_concept/domain/bloc/authentication/authentication_bloc.dart';
-import 'package:tren_boong_concept/features/setting/user_setting/setlang.dart';
+import 'package:tren_boong_concept/features/setting/user_setting/more.dart';
 import 'package:tren_boong_concept/features/setting/user_setting/user_setting_view.dart';
 import '../../../domain/bloc/authentication/authentication_event.dart';
 import 'about_us.dart';
@@ -48,130 +48,153 @@ class _SettingPopupState extends State<SettingPopup> {
       );
     }
 
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Container(
+      color: Colors.grey[200],
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Column(
                 children: [
-                  SizedBox(
-                    width: 50,
-                    height: 50,
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 50,
+                          height: 50,
+                        ),
+                        Text(
+                          AppLocalizations.of(context)!.setting,
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          width: 50,
+                          height: 50,
+                        ),
+                      ],
+                    ),
                   ),
-                  Text(
-                    AppLocalizations.of(context)!.setting,
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    width: 50,
-                    height: 50,
-                  ),
+                  Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Card(
+                        elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: ListView(
+                          shrinkWrap: true,
+                          children: [
+                            ListTile(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        const UserSettingDetail()));
+                              },
+                              leading: const Icon(Icons.account_circle),
+                              title:
+                                  Text(AppLocalizations.of(context)!.account),
+                              trailing: InkWell(
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            const Divider(
+                              color: Colors.brown,
+                            ),
+                            ListTile(
+                              onTap: () {},
+                              leading: Icon(Icons.notifications),
+                              title: Text(
+                                  AppLocalizations.of(context)!.notification),
+                              trailing: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.black,
+                              ),
+                            ),
+                            const Divider(
+                              color: Colors.brown,
+                            ),
+                            ListTile(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const AboutUs()));
+                              },
+                              leading: const Icon(Icons.details),
+                              title:
+                                  Text(AppLocalizations.of(context)!.aboutUs),
+                              trailing: InkWell(
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            const Divider(
+                              color: Colors.brown,
+                            ),
+                          ],
+                        ),
+                      )),
                 ],
               ),
-            ),
-            Padding(
+              const SizedBox(height: 20.0),
+              Text(
+                AppLocalizations.of(context)!.orther,
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    ListTile(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const UserSettingDetail()));
-                      },
-                      leading: const Icon(Icons.account_circle),
-                      title: Text(AppLocalizations.of(context)!.account),
-                      trailing: InkWell(
-                        child: Icon(
+                child: Card(
+                  elevation: 4.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                  child: Column(
+                    children: [
+                      ListTile(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const SetLang()));
+                        },
+                        leading: Icon(Icons.settings),
+                        title: Text(AppLocalizations.of(context)!.setting),
+                        trailing: Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.black,
                         ),
                       ),
-                    ),
-                    const Divider(
-                      color: Colors.brown,
-                    ),
-                    ListTile(
-                      onTap: () {},
-                      leading: Icon(Icons.notifications),
-                      title: Text(AppLocalizations.of(context)!.notification),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.black,
+                      const Divider(
+                        color: Colors.brown,
                       ),
-                    ),
-                    // const Divider(
-                    //   color: Colors.brown,
-                    // ),
-                    // ListTile(
-                    //   onTap: () {},
-                    //   leading: Icon(Icons.security_rounded),
-                    //   title: Text(
-                    //     AppLocalizations.of(context)!.privacyAndSecurity,
-                    //   ),
-                    //   trailing: Icon(
-                    //     Icons.arrow_forward_ios,
-                    //     color: Colors.black,
-                    //   ),
-                    // ),
-                    const Divider(
-                      color: Colors.brown,
-                    ),
-                    ListTile(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const AboutUs()));
-                      },
-                      leading: const Icon(Icons.details),
-                      title: Text(AppLocalizations.of(context)!.aboutUs),
-                      trailing: InkWell(
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.black,
+                      ListTile(
+                        onTap: () {
+                          _showMyDialog();
+                        },
+                        leading: const Icon(Icons.logout),
+                        title: Text(AppLocalizations.of(context)!.signOut),
+                        trailing: InkWell(
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
-                    ),
-                    const Divider(
-                      color: Colors.brown,
-                    ),
-                    ListTile(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const SetLang()));
-                      },
-                      leading: Icon(Icons.menu),
-                      title: Text(AppLocalizations.of(context)!.more),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.black,
-                      ),
-                    ),
-                    const Divider(
-                      color: Colors.brown,
-                    ),
-                    ListTile(
-                      onTap: () {
-                        _showMyDialog();
-                      },
-                      leading: const Icon(Icons.logout),
-                      title: Text(AppLocalizations.of(context)!.signOut),
-                      trailing: InkWell(
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
-          ],
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
