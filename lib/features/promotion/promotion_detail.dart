@@ -4,6 +4,7 @@ import '../../domain/entity/coupon_entity.dart';
 import '../../utility/formater.dart';
 import 'promotion_date.dart';
 import 'promotion_infor.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart'; 
 
 class PromotionDetail extends StatelessWidget {
   const PromotionDetail(
@@ -29,14 +30,19 @@ class PromotionDetail extends StatelessWidget {
           PromotionInfor(
               title: coupon.title,
               details: [
-                'Giảm ${Formater.vndFormat(coupon.couponPrice)} cho đồ uống bất kỳ',
-                'Đặt tối thiểu ${Formater.vndFormat(coupon.minimumPrice)}'
+                AppLocalizations.of(context)!.discount +
+                    '${Formater.vndFormat(coupon.couponPrice)}' +
+                    AppLocalizations.of(context)!.forAnyDrink,
+                AppLocalizations.of(context)!.miniumOrder +
+                    '${Formater.vndFormat(coupon.minimumPrice)}'
               ],
               textColor: textColor),
           Divider(height: 10, color: borderColor, thickness: 0.4),
           PromotionDate(
               textColor: textColor,
-              date: isSelected ? 'Đã chọn' : 'Khuyến mãi có hạn',
+              date: isSelected
+                  ? AppLocalizations.of(context)!.selected
+                  : AppLocalizations.of(context)!.promotionIsLimited,
               icon: isSelected
                   ? Icons.check_circle_rounded
                   : Icons.access_time_filled_rounded)

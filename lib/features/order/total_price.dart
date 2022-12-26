@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entity/order_entity.dart';
 import '../../utility/formater.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TotalPrice extends StatelessWidget {
   final OrderEntity order;
@@ -16,17 +17,19 @@ class TotalPrice extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            const Text('Tổng cộng',
+            Text(AppLocalizations.of(context)!.totalprice,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
             const SizedBox(height: 25),
-            DetailPrice(title: 'Thành tiền', price: generatePrice(order)),
             DetailPrice(
-                title: 'Giảm giá',
+                title: AppLocalizations.of(context)!.totalAmount,
+                price: generatePrice(order)),
+            DetailPrice(
+                title: AppLocalizations.of(context)!.discount,
                 price: order.coupon != null
                     ? '-${Formater.vndFormat(order.coupon!.couponPrice)}'
                     : '-${Formater.vndFormat(0)}'),
             PayPrice(
-                title: 'Số tiền thanh toán',
+                title: AppLocalizations.of(context)!.amountToPay,
                 price: Formater.vndFormat(order.totalPrice))
           ],
         ));

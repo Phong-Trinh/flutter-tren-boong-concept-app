@@ -4,6 +4,7 @@ import '../../domain/bloc/order/order_event.dart';
 import '../../domain/entity/order_entity.dart';
 import '../../utility/formater.dart';
 import 'order_result.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ConfirmOrder extends StatelessWidget {
   final OrderBloc orderBloc;
@@ -12,6 +13,14 @@ class ConfirmOrder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     isEmitAvailable = true;
+    String generateTextTotalItem(OrderEntity order) {
+      int total = 0;
+      order.orderDetails.forEach((element) {
+        total += element.quantity;
+      });
+      return total.toString() + " " + AppLocalizations.of(context)!.product;
+    }
+
     return Container(
         padding:
             const EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
@@ -51,22 +60,14 @@ class ConfirmOrder extends StatelessWidget {
                     decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.all(Radius.circular(15))),
-                    child: const Center(
-                        child: Text('ĐẶT HÀNG',
+                    child: Center(
+                        child: Text(AppLocalizations.of(context)!.order,
                             style: TextStyle(
                                 fontSize: 16,
                                 color: Color.fromARGB(255, 202, 97, 5),
                                 fontWeight: FontWeight.w700)))))
           ],
         ));
-  }
-
-  String generateTextTotalItem(OrderEntity order) {
-    int total = 0;
-    order.orderDetails.forEach((element) {
-      total += element.quantity;
-    });
-    return total.toString() + ' sản phẩm';
   }
 
   String generateTotalPrice(OrderEntity order) {

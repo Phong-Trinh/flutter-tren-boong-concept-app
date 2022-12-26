@@ -7,6 +7,7 @@ import '../../utility/formater.dart';
 import '../../utility/save_data.dart';
 import '../pop_up/menu.dart';
 import '../widgets/pop_over.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ListDetailProduct extends StatelessWidget {
   final OrderBloc orderBloc;
@@ -26,7 +27,7 @@ class ListDetailProduct extends StatelessWidget {
             const SizedBox(height: 20),
             Row(
               children: [
-                const Text('Sản phẩm đã chọn',
+                Text(AppLocalizations.of(context)!.selectedProduct,
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
                 const Spacer(),
@@ -38,13 +39,13 @@ class ListDetailProduct extends StatelessWidget {
                     },
                     child: Container(
                         height: 30,
-                        width: 55,
+                        width: 60,
                         decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 243, 227, 214),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15))),
-                        child: const Center(
-                            child: Text('Thêm',
+                        child: Center(
+                            child: Text(AppLocalizations.of(context)!.buyMore,
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Color.fromARGB(255, 212, 93, 3),
@@ -56,7 +57,9 @@ class ListDetailProduct extends StatelessWidget {
                 ? Container(
                     margin: EdgeInsets.only(bottom: 10),
                     width: double.infinity,
-                    child: const Text('*Không có sản phẩm trong giỏ hàng',
+                    child: Text(
+                        AppLocalizations.of(context)!
+                            .thereAreNoProductsInTheCart,
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             color: Color.fromARGB(255, 212, 93, 3),
@@ -108,7 +111,7 @@ class _DetailInforProductState extends State<DetailInforProduct> {
                 Text(generateProductName(widget.item),
                     style: const TextStyle(
                         fontWeight: FontWeight.w700, height: 2)),
-                const Text('Vừa',
+                Text(AppLocalizations.of(context)!.mediumSize,
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,

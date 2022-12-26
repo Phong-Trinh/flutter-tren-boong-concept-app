@@ -5,6 +5,7 @@ import '../../utility/formater.dart';
 import '../../utility/save_data.dart';
 import '../promotion/promotion.dart';
 import '../widgets/pop_over.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DetailAppliedCoupon extends StatelessWidget {
   final CouponEntity? coupon;
@@ -20,7 +21,7 @@ class DetailAppliedCoupon extends StatelessWidget {
             const SizedBox(height: 20),
             Row(
               children: [
-                const Text('Coupon',
+                Text(AppLocalizations.of(context)!.coupon,
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
                 const Spacer(),
@@ -32,13 +33,13 @@ class DetailAppliedCoupon extends StatelessWidget {
                     },
                     child: Container(
                         height: 30,
-                        width: 62,
+                        width: 60,
                         decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 243, 227, 214),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15))),
-                        child: const Center(
-                            child: Text('Thay đổi',
+                        child: Center(
+                            child: Text(AppLocalizations.of(context)!.change,
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Color.fromARGB(255, 212, 93, 3),
@@ -50,7 +51,9 @@ class DetailAppliedCoupon extends StatelessWidget {
               Flexible(
                   child: Container(
                       child: Text(
-                          coupon != null ? coupon!.title : 'Không áp dụng',
+                          coupon != null
+                              ? coupon!.title
+                              : AppLocalizations.of(context)!.doNotApply,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                               fontWeight: FontWeight.w500, height: 2)))),
@@ -89,7 +92,7 @@ class DetailInforProduct extends StatelessWidget {
                 Text(generateProductName(item),
                     style: const TextStyle(
                         fontWeight: FontWeight.w700, height: 2)),
-                const Text('Vừa',
+                Text(AppLocalizations.of(context)!.mediumSize,
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entity/coupon_entity.dart';
 import '../../utility/formater.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrderCoupon extends StatelessWidget {
   final CouponEntity? coupon;
@@ -26,8 +27,9 @@ class OrderCoupon extends StatelessWidget {
               fontWeight: FontWeight.w500,
               fontSize: 12),
           child: Text((coupon == null)
-              ? 'Chưa có mã giảm giá'
-              : 'Hóa đơn được giảm ${Formater.vndFormat(coupon!.couponPrice)}'))
+              ? AppLocalizations.of(context)!.noDiscountCodeYet
+              : AppLocalizations.of(context)!.discountedBill +
+                  '${Formater.vndFormat(coupon!.couponPrice)}'))
     ]);
   }
 }

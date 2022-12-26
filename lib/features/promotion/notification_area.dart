@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NotificationArea extends StatelessWidget {
   const NotificationArea({super.key});
@@ -12,8 +13,7 @@ class NotificationArea extends StatelessWidget {
         decoration: const BoxDecoration(
             color: Color.fromARGB(174, 219, 142, 232),
             borderRadius: BorderRadius.all(Radius.circular(8))),
-        child:
-            Row(crossAxisAlignment: CrossAxisAlignment.start, children: const [
+        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Icon(
             Icons.info,
             color: Color.fromARGB(255, 64, 23, 93),
@@ -21,8 +21,7 @@ class NotificationArea extends StatelessWidget {
           ),
           SizedBox(width: 12),
           Flexible(
-              child: Text(
-                  'Hệ thống tự động áp dụng những ưu đãi tốt nhất cho đơn hàng.',
+              child: Text(AppLocalizations.of(context)!.promoRemind,
                   style: TextStyle(
                       color: Color.fromARGB(255, 64, 23, 93),
                       fontWeight: FontWeight.w700,

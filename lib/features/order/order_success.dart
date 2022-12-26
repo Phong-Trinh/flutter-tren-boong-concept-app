@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../utility/save_data.dart';
 import 'home_button.dart';
 import 'order_result.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OrderSuccess extends StatelessWidget {
   final double screenWidth;
@@ -29,7 +30,7 @@ class OrderSuccess extends StatelessWidget {
         ),
         SizedBox(height: screenHeight * 0.1),
         Text(
-          "Cảm ơn bạn",
+          AppLocalizations.of(context)!.thankYou,
           style: TextStyle(
             color: themeColor,
             fontWeight: FontWeight.w600,
@@ -38,7 +39,7 @@ class OrderSuccess extends StatelessWidget {
         ),
         SizedBox(height: screenHeight * 0.01),
         Text(
-          "Thanh toán thành công",
+          AppLocalizations.of(context)!.paymentSucess,
           style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.w400,
@@ -47,7 +48,7 @@ class OrderSuccess extends StatelessWidget {
         ),
         SizedBox(height: screenHeight * 0.05),
         Text(
-          "Đơn hàng đã được ghi nhận và sẽ có trong giây lát, trở lại trang chủ để trải nghiệm những tính năng thú vị khác",
+          AppLocalizations.of(context)!.orderHasBeenReceived,
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.black54,
@@ -58,7 +59,7 @@ class OrderSuccess extends StatelessWidget {
         SizedBox(height: screenHeight * 0.06),
         Flexible(
             child: HomeButton(
-          title: 'Trang chủ',
+          title: AppLocalizations.of(context)!.homePage,
           onTap: () {
             Navigator.of(context)
                 .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);

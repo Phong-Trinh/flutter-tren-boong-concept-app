@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/bloc/otp/otp_bloc.dart';
 import '../../../domain/bloc/otp/otp_event.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class resendTap extends StatefulWidget {
   bool resendEnable;
   final List<TextEditingController> inputControllers;
@@ -27,8 +27,8 @@ class _resendTapState extends State<resendTap> {
               widget.resendEnable = false;
             });
           },
-          child: const Text(
-            "Gửi lại",
+          child:  Text(
+             AppLocalizations.of(context)!.reSend,
             style: TextStyle(decoration: TextDecoration.underline, height: 2),
           ),
         ));

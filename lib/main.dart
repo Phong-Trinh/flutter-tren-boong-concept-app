@@ -17,6 +17,7 @@ import 'features/order/order_result.dart';
 import 'firebase_options.dart';
 import 'infrastructure/repository/user_repository.dart';
 import 'utility/save_data.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -63,9 +64,20 @@ class MyApp extends StatefulWidget {
 
   @override
   State<MyApp> createState() => _MyAppState();
+  static void setLocale(BuildContext context, Locale newLocale) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state?.setLocale(newLocale);
+  }
 }
 
 class _MyAppState extends State<MyApp> {
+  Locale? _locale;
+  setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
   Uri? _initialUri;
   Uri? _latestUri;
   Object? _err;
@@ -150,7 +162,11 @@ class _MyAppState extends State<MyApp> {
             child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
               builder: (BuildContext context, AuthenticationState state) {
                 if (state is UnauthenticatedState) {
-                  return const MaterialApp(
+                  return MaterialApp(
+                    localizationsDelegates:
+                        AppLocalizations.localizationsDelegates,
+                    supportedLocales: AppLocalizations.supportedLocales,
+                    locale: _locale,
                     debugShowCheckedModeBanner: false,
                     home: LoginScreen(),
                   );
@@ -159,6 +175,10 @@ class _MyAppState extends State<MyApp> {
                   return MaterialApp(
                     navigatorKey: navigatorKey,
                     debugShowCheckedModeBanner: false,
+                    localizationsDelegates:
+                        AppLocalizations.localizationsDelegates,
+                    supportedLocales: AppLocalizations.supportedLocales,
+                    locale: _locale,
                     home: const HomePage(),
                   );
                 }
