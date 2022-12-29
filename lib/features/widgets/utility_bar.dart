@@ -17,6 +17,10 @@ class UtilityBar extends StatefulWidget {
 class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
   PersistentBottomSheetController? persistentBottomSheetController;
   late AnimationController controller;
+  bool pressHome = true;
+  bool pressOrder = true;
+  bool pressPromotion = true;
+  bool pressSetting = true;
 
   @override
   initState() {
@@ -46,43 +50,63 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
           IconButton(
             icon: const Icon(Icons.home),
             tooltip: ("Change card"),
+            color: pressHome ? Colors.black : Colors.green[700],
             onPressed: () {
               setState(() {
+                pressHome = false;
+                pressOrder = true;
+                pressPromotion = true;
+                pressSetting = true;
                 persistentBottomSheetController =
                     widget.scaffoldKey.currentState!.showBottomSheet(
-                            (context) => const Popover(child: ListCard()));
+                        (context) => const Popover(child: ListCard()));
               });
             },
           ),
           IconButton(
               tooltip: ("Orders"),
               icon: const Icon(Icons.shopping_bag),
+              color: pressOrder ? Colors.black : Colors.green[700],
               onPressed: () {
                 setState(() {
+                  pressOrder = false;
+                  pressHome = true;
+                  pressPromotion = true;
+                  pressSetting = true;
                   persistentBottomSheetController =
                       widget.scaffoldKey.currentState!.showBottomSheet(
-                              (context) => const Popover(child: MenuPopup()));
+                          (context) => const Popover(child: MenuPopup()));
                 });
               }
-            // child: Text("Orders")
-          ),
+              // child: Text("Orders")
+              ),
           IconButton(
               icon: const Icon(Icons.videogame_asset),
               tooltip: ("promotion"),
+              color: pressPromotion ? Colors.black : Colors.green[700],
               onPressed: () {
                 setState(() {
+                  pressPromotion = false;
+                  pressHome = true;
+                  pressSetting = true;
+                  pressOrder = true;
                   persistentBottomSheetController =
                       widget.scaffoldKey.currentState!.showBottomSheet(
-                              (context) => Popover(child: PromotionPopup()));
+                          (context) => Popover(child: PromotionPopup()));
                 });
               }),
           IconButton(
-            icon: const Icon(Icons.settings),
-            tooltip: ("event"),
+            icon: const Icon(Icons.menu),
+            tooltip: ("more"),
+            color: pressSetting ? Colors.black : Colors.green[700],
             onPressed: () {
               setState(() {
-                widget.scaffoldKey.currentState!
-                    .showBottomSheet((context) => Popover(child: SettingPopup()));
+                pressSetting = false;
+                pressHome = true;
+                pressPromotion = true;
+                pressOrder = true;
+                widget.scaffoldKey.currentState!.showBottomSheet(
+                    (context) => Popover(child: SettingPopup()));
               });
             },
           ),
