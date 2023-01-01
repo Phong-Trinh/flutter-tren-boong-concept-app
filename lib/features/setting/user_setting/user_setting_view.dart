@@ -102,13 +102,19 @@ class _UserSettingDetailState extends State<UserSettingDetail> {
                             } else {}
                           },
                         )
-                      : InkWell(
-                          child: const Text("Chỉnh sửa"),
-                          onTap: () {
-                            setState(() {
-                              editMode = true;
-                            });
-                          },
+                      : Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: InkWell(
+                            child: const Text(
+                              "Chỉnh sửa",
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                            onTap: () {
+                              setState(() {
+                                editMode = true;
+                              });
+                            },
+                          ),
                         )),
             ],
           ),
