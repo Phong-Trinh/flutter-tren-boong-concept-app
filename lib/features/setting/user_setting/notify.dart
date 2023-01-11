@@ -50,31 +50,31 @@ class _NotifyState extends State<Notify> {
                     secondary: const Icon(Icons.notifications),
                   ),
                 ),
-                Card(
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      ListTile(
-                        onTap: () {},
-                        title: Text('thong bao 1'),
-                      ),
-                      const Divider(
-                        color: Colors.brown,
-                      ),
-                      ListTile(
-                        onTap: () {},
-                        title: Text('thong bao 2'),
-                      ),
-                      const Divider(
-                        color: Colors.brown,
-                      ),
-                      ListTile(
-                        onTap: () {},
-                        title: Text('thong bao 3'),
-                      ),
-                    ],
-                  ),
-                ),
+                // Card(
+                //   child: ListView(
+                //     shrinkWrap: true,
+                //     children: [
+                //       ListTile(
+                //         onTap: () {},
+                //         title: Text('thong bao 1'),
+                //       ),
+                //       const Divider(
+                //         color: Colors.brown,
+                //       ),
+                //       ListTile(
+                //         onTap: () {},
+                //         title: Text('thong bao 2'),
+                //       ),
+                //       const Divider(
+                //         color: Colors.brown,
+                //       ),
+                //       ListTile(
+                //         onTap: () {},
+                //         title: Text('thong bao 3'),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             )),
       ),

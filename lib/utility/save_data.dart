@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class SaveData {
+  static late String title;
   static late String userId;
   static late String userPhoneNumb;
   static int selectedCouponId = -1;

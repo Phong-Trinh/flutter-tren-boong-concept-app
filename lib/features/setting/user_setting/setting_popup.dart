@@ -105,9 +105,7 @@ class SettingPopup extends StatelessWidget {
                             const Divider(
                               color: Colors.brown,
                             ),
-                            const Divider(
-                              color: Colors.brown,
-                            ),
+
                             ListTile(
                               leading: Icon(Icons.notifications),
                               title: Text("Thông báo"),
@@ -153,8 +151,8 @@ class SettingPopup extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: 10,
-                        height: 10,
+                        width: 20,
+                        height: 20,
                       ),
                       Text(
                         'Tài Khoản',
@@ -164,8 +162,8 @@ class SettingPopup extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        width: 10,
-                        height: 10,
+                        width: 20,
+                        height: 20,
                       ),
                       Card(
                         elevation: 4.0,
@@ -181,9 +179,6 @@ class SettingPopup extends StatelessWidget {
                                 Icons.arrow_forward_ios,
                                 color: Colors.black,
                               ),
-                            ),
-                            const Divider(
-                              color: Colors.brown,
                             ),
                             const Divider(
                               color: Colors.brown,
