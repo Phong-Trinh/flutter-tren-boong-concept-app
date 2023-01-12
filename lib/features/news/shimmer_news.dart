@@ -7,6 +7,7 @@ class ShimmerNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
         padding: EdgeInsets.only(top: 20, left: 16, right: 16),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(height: 16),

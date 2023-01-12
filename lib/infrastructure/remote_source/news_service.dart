@@ -6,8 +6,7 @@ import 'package:http/http.dart' as http;
 class NewsService {
   static Future<List<NewsEntity>> getNews() async {
     try {
-      var url = Uri.parse(
-          '${ApiConstant.baseUrl}/new-feeds');
+      var url = Uri.parse('${ApiConstant.baseUrl}/new-feeds');
       var response = await http.get(url);
       print(url);
       if (response.statusCode == 200) {
@@ -26,7 +25,7 @@ class NewsService {
     Map<String, dynamic> parsed = jsonDecode(json);
     final newsJson = parsed['data'];
     List<NewsEntity> news = [];
-newsJson.forEach((news) => news.add(NewsEntity.fromJson(news)));
+    newsJson.forEach((newfeed) => news.add(NewsEntity.fromJson(newfeed)));
     return news;
   }
 }
