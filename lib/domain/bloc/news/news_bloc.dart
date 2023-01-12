@@ -1,6 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tren_boong_concept/infrastructure/repository/coupon_repository.dart';
-
 import '../../../infrastructure/repository/news_repository.dart';
 import 'news_event.dart';
 import 'news_state.dart';
@@ -15,8 +13,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       emit(NewsLoadingState());
       await Future.delayed(const Duration(seconds: 1));
       try {
-        var coupons = await _newsRepository.fetchNews();
-        emit(NewsUpdateSuccess(coupons));
+        var news = await _newsRepository.fetchNews();
+        emit(NewsUpdateSuccess(news));
       } catch (e) {
         emit(NewsLoadFailed());
       }
