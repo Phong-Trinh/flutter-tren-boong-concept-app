@@ -20,4 +20,13 @@ class NewsEntity {
         dateTime: DateTime(2022),
         content: news['content']);
   }
+  @override
+  String toString() {
+    // TODO: implement toString
+    return """ 
+    Title: $title
+    FirstName :$content
+    LastName :$dateTime}
+    """;
+  }
 }

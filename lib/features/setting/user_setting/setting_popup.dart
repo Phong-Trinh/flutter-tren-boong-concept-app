@@ -5,6 +5,7 @@ import 'package:tren_boong_concept/domain/bloc/authentication/authentication_blo
 import 'package:tren_boong_concept/features/setting/user_setting/user_setting_view.dart';
 
 import '../../../domain/bloc/authentication/authentication_event.dart';
+import '../../news/news.dart';
 import 'about_us.dart';
 import 'notify.dart';
 
@@ -112,6 +113,22 @@ class SettingPopup extends StatelessWidget {
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => const Notify()));
+                              },
+                              trailing: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.black,
+                              ),
+                            ),
+                            const Divider(
+                              color: Colors.brown,
+                            ),
+
+                            ListTile(
+                              leading: Icon(Icons.event),
+                              title: Text("Tin tức"),
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const MyNews()));
                               },
                               trailing: Icon(
                                 Icons.arrow_forward_ios,

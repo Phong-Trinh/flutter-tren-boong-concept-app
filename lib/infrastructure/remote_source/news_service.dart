@@ -4,15 +4,16 @@ import 'api_constant.dart';
 import 'package:http/http.dart' as http;
 
 class NewsService {
-  static Future<List<NewsEntity>> getNews(String id) async {
+  static Future<List<NewsEntity>> getNews() async {
     try {
       var url = Uri.parse(
-          '${ApiConstant.baseUrl}/user-coupons?filters[app_user][id][\$eq]=${id}&populate=*');
+          '${ApiConstant.baseUrl}/new-feeds');
       var response = await http.get(url);
       print(url);
       if (response.statusCode == 200) {
         print(response.body);
         List<NewsEntity> news = praseNewsFromJson(response.body);
+        print(news.toString());
         return news;
       }
     } catch (e) {
