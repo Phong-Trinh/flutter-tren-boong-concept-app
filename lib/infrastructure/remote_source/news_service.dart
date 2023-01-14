@@ -12,7 +12,7 @@ class NewsService {
       if (response.statusCode == 200) {
         print(response.body);
         List<NewsEntity> news = praseNewsFromJson(response.body);
-        print(news.toString());
+        print("hello world :${news.toString()}");
         return news;
       }
     } catch (e) {
@@ -21,11 +21,12 @@ class NewsService {
     return [];
   }
 
+ 
+
   static List<NewsEntity> praseNewsFromJson(String json) {
     Map<String, dynamic> parsed = jsonDecode(json);
     final newsJson = parsed['data'];
-    List<NewsEntity> news = [];
-    newsJson.forEach((newfeed) => news.add(NewsEntity.fromJson(newfeed)));
+    List<NewsEntity> news = NewsEntity.fromListJson(newsJson);
     return news;
   }
 }

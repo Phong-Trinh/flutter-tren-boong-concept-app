@@ -1,31 +1,32 @@
 class NewsEntity {
   final String title;
   final String content;
-  //final DateTime dateTime;
+  final String dateTime;
 
   NewsEntity({
     required this.title,
     required this.content,
-  //  required this.dateTime,
+    required this.dateTime,
   });
   factory NewsEntity.fromJson(Map<String, dynamic> json) {
     final attributes = json['attributes'];
-    final newfeed = attributes['newfeed'];
-    var k = newfeed['data']['attributes']['tittle']['content'];
-    print(newfeed['data']['attributes']['tittle']['content']);
-    //print(' day la K'+k.toString());
     return NewsEntity(
-        title: newfeed['data']['attributes']['tittle'],
-      //  dateTime: DateTime(2022),
-        content: newfeed['content']);
+        title: attributes['title'] ?? "",
+        dateTime: attributes['date'] ?? "",
+        content: attributes['content'] ?? "");
   }
+  static List<NewsEntity> fromListJson(List<dynamic> json) {
+    if (json.isEmpty) return [];
+    return json.map((e) => NewsEntity.fromJson(e)).toList();
+  }
+
   @override
   String toString() {
     // TODO: implement toString LastName :$dateTime}
     return """ 
     Title: $title
-    FirstName :$content
-    
+    Content :$content
+    DateTime :$dateTime
     """;
   }
 }
