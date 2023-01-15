@@ -12,8 +12,6 @@ class NewsDate extends StatelessWidget {
         height: 45,
         child: Row(
           children: [
-            SizedBox(width: 20),
-            SizedBox(width: 8),
             Text(date,
                 style: TextStyle(
                     fontWeight: FontWeight.w700,

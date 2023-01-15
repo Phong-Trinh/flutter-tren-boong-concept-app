@@ -21,7 +21,6 @@ class _NewsListState extends State<NewsList> {
           for (var news in widget.news)
             GestureDetector(
                 onTap: () {
-                  // print(SaveData.selectedCouponId.toString());
                 },
                 child: NewsDetail(
                   news: news,
