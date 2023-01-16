@@ -23,26 +23,24 @@ class NewsInfor extends StatelessWidget {
                 style: TextStyle(
                     fontWeight: FontWeight.w700,
                     wordSpacing: 1.6,
-                    fontSize: 20)),
+                    fontSize: 25)),
             for (var i in details)
-              Container(
-                  height: 32,
-                  child: ListTile(
-                    contentPadding:
-                        const EdgeInsets.only(left: 0.0, right: 0.0),
-                    minLeadingWidth: 10,
-                    minVerticalPadding: 10,
-                    horizontalTitleGap: 8,
-                    leading: Icon(
-                      Icons.fiber_manual_record,
-                      size: 12,
+              SizedBox(
+                  height: 300,
+                  child: SingleChildScrollView(
+                    child: ListTile(
+                      contentPadding:
+                          const EdgeInsets.only(left: 0.0, right: 0.0),
+                      minLeadingWidth: 10,
+                      minVerticalPadding: 10,
+                      horizontalTitleGap: 8,
+                      title: Text(i,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              wordSpacing: 0)),
                     ),
-                    title: Text(i,
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            wordSpacing: 0)),
                   ))
           ],
         ));

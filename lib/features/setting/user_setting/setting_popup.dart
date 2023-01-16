@@ -50,175 +50,177 @@ class SettingPopup extends StatelessWidget {
       color: Colors.grey[300],
       child: SizedBox(
         width: MediaQuery.of(context).size.width,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    SizedBox(
-                      width: 50,
-                      height: 50,
-                    ),
-                    Text(
-                      "Khác",
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      width: 50,
-                      height: 50,
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Card(
-                        elevation: 4.0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: ListView(
-                          shrinkWrap: true,
-                          children: [
-                            ListTile(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        const UserSettingDetail()));
-                              },
-                              leading: const Icon(Icons.account_circle),
-                              title: const Text("Thông tin cá nhân"),
-                              trailing: InkWell(
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                            const Divider(
-                              color: Colors.brown,
-                            ),
-
-                            ListTile(
-                              leading: Icon(Icons.notifications),
-                              title: Text("Thông báo"),
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => const Notify()));
-                              },
-                              trailing: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.black,
-                              ),
-                            ),
-                            const Divider(
-                              color: Colors.brown,
-                            ),
-
-                            ListTile(
-                              leading: Icon(Icons.event),
-                              title: Text("Tin tức"),
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => const MyNews()));
-                              },
-                              trailing: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.black,
-                              ),
-                            ),
-                            // const Divider(
-                            //   color: Colors.brown,
-                            // ),
-                            // ListTile(
-                            //   leading: Icon(Icons.security_rounded),
-                            //   title: Text("Quyền riêng tư & Bảo mật"),
-                            //   trailing: Icon(
-                            //     Icons.arrow_forward_ios,
-                            //     color: Colors.black,
-                            //   ),
-                            // ),
-
-                            const Divider(
-                              color: Colors.brown,
-                            ),
-                            ListTile(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => const AboutUs()));
-                              },
-                              leading: const Icon(Icons.details),
-                              title: const Text("Giới thiệu"),
-                              trailing: InkWell(
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+        child: Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
                       SizedBox(
-                        width: 20,
-                        height: 20,
+                        width: 50,
+                        height: 50,
                       ),
                       Text(
-                        'Tài Khoản',
+                        "Khác",
                         style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
-                        width: 20,
-                        height: 20,
+                        width: 50,
+                        height: 50,
                       ),
-                      Card(
-                        elevation: 4.0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: ListView(
-                          shrinkWrap: true,
-                          children: [
-                            const ListTile(
-                              leading: Icon(Icons.help),
-                              title: Text("Trợ gúp & Hỗ trợ"),
-                              trailing: Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.black,
+                    ],
+                  ),
+                ),
+                Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        Card(
+                          elevation: 4.0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              ListTile(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          const UserSettingDetail()));
+                                },
+                                leading: const Icon(Icons.account_circle),
+                                title: const Text("Thông tin cá nhân"),
+                                trailing: InkWell(
+                                  child: Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: Colors.black,
+                                  ),
+                                ),
                               ),
-                            ),
-                            const Divider(
-                              color: Colors.brown,
-                            ),
-                            ListTile(
-                              onTap: () {
-                                _showMyDialog();
-                              },
-                              leading: const Icon(Icons.logout),
-                              title: const Text("Đăng xuất"),
-                              trailing: InkWell(
-                                child: Icon(
+                              const Divider(
+                                color: Colors.brown,
+                              ),
+        
+                              ListTile(
+                                leading: Icon(Icons.notifications),
+                                title: Text("Thông báo"),
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => const Notify()));
+                                },
+                                trailing: Icon(
                                   Icons.arrow_forward_ios,
                                   color: Colors.black,
                                 ),
                               ),
-                            ),
-                          ],
+                              const Divider(
+                                color: Colors.brown,
+                              ),
+        
+                              ListTile(
+                                leading: Icon(Icons.event),
+                                title: Text("Tin tức"),
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => const MyNews()));
+                                },
+                                trailing: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              const Divider(
+                                color: Colors.brown,
+                              ),
+                              ListTile(
+                                leading: Icon(Icons.security_rounded),
+                                title: Text("Quyền riêng tư & Bảo mật"),
+                                trailing: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.black,
+                                ),
+                              ),
+        
+                              const Divider(
+                                color: Colors.brown,
+                              ),
+                              ListTile(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => const AboutUs()));
+                                },
+                                leading: const Icon(Icons.details),
+                                title: const Text("Giới thiệu"),
+                                trailing: InkWell(
+                                  child: Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  )),
-            ],
+                        SizedBox(
+                          width: 20,
+                          height: 20,
+                        ),
+                        Text(
+                          'Tài Khoản',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                          height: 20,
+                        ),
+                        Card(
+                          elevation: 4.0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                          child: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              const ListTile(
+                                leading: Icon(Icons.help),
+                                title: Text("Trợ gúp & Hỗ trợ"),
+                                trailing: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              const Divider(
+                                color: Colors.brown,
+                              ),
+                              ListTile(
+                                onTap: () {
+                                  _showMyDialog();
+                                },
+                                leading: const Icon(Icons.logout),
+                                title: const Text("Đăng xuất"),
+                                trailing: InkWell(
+                                  child: Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )),
+              ],
+            ),
           ),
         ),
       ),

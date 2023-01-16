@@ -37,6 +37,7 @@ class NewsDetail extends StatelessWidget {
         },
       );
     }
+
     return Container(
         margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
@@ -50,9 +51,17 @@ class NewsDetail extends StatelessWidget {
             child: Column(children: [
               NewsInfor(
                 title: news.title,
-                details: [news.content],
+                details: [],
               ),
-              Divider(height: 10, thickness: 1),
+              TextButton(
+                  onPressed: () {
+                    _showNewsDialog();
+                  },
+                  child: Text(
+                    "Chi tiết",
+                    style: TextStyle(fontSize: 20),
+                  )),
+              const Divider(height: 10, thickness: 1),
               Row(
                 children: [
                   SizedBox(width: 20),
