@@ -26,3 +26,7 @@ class AuthenticatedState extends AuthenticationState {
 class UnauthenticatedState extends AuthenticationState {
   UnauthenticatedState(super.user);
 }
+
+class UpdatePointCoinState extends AuthenticationState{
+  UpdatePointCoinState(super.user);
+}

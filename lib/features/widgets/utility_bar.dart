@@ -106,7 +106,7 @@ class _UtilityBarState extends State<UtilityBar> with TickerProviderStateMixin {
                 pressPromotion = true;
                 pressOrder = true;
                 widget.scaffoldKey.currentState!.showBottomSheet(
-                    (context) => Popover(child: SettingPopup()));
+                    (context) => PopoverSetting(child: SettingPopup()));
               });
             },
           ),

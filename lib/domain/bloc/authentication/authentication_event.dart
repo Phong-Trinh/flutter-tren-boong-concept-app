@@ -43,3 +43,11 @@ class UpdateDeveiceFcmToken extends AuthenticationEvent {
 }
 
 class SignoutUserEvent extends AuthenticationEvent {}
+
+class UpdatePointCoinEvent extends AuthenticationEvent{
+  final int point;
+
+  UpdatePointCoinEvent(this.point);
+
+
+}

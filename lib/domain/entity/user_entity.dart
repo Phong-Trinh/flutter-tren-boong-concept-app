@@ -10,6 +10,7 @@ class UserEntity {
   String? email;
   String? address;
   String? url;
+  int? score;
 
   UserEntity(
       {required this.id,
@@ -18,7 +19,8 @@ class UserEntity {
       this.phoneNumber,
       this.email,
       this.address,
-      this.url});
+      this.url,
+      this.score});
 
   Map<String, dynamic> toJson() => {
         'data': {
@@ -28,7 +30,8 @@ class UserEntity {
           'lastName': lastName,
           'email': email,
           'address': address,
-          'url': url
+          'url': url,
+          'score' : score
         },
         "meta": {}
       };
@@ -42,7 +45,8 @@ class UserEntity {
         phoneNumber: attributes['phoneNumber'],
         email: attributes['email'],
         address: attributes['address'],
-        url: attributes['url'] ?? '');
+        url: attributes['url'] ?? '',
+        score: attributes['score'] ?? 0);
   }
 
   @override
@@ -55,7 +59,8 @@ class UserEntity {
     Phone:$phoneNumber
     Email:$email
     Address:$address
-    url:$url}
+    url:$url
+    score:$score
     """;
   }
 }

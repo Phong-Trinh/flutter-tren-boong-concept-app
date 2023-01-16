@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tren_boong_concept/domain/bloc/authentication/authentication_bloc.dart';
+import 'package:tren_boong_concept/domain/bloc/authentication/authentication_event.dart';
 import '../../../domain/bloc/order/order_bloc.dart';
 import '../../domain/bloc/order/order_event.dart';
 import '../../domain/entity/order_entity.dart';
@@ -39,9 +42,12 @@ class ConfirmOrder extends StatelessWidget {
             const Spacer(),
             TextButton(
                 onPressed: () {
+
                   if ((orderBloc.order.orderDetails.isNotEmpty &&
                       isEmitAvailable)) {
+                    context.read<AuthenticationBloc>().add(UpdatePointCoinEvent(10));
                     orderBloc.add(EmitOrder());
+
                   }
                   isEmitAvailable = false;
                 },
