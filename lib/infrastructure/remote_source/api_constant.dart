@@ -5,6 +5,7 @@ class ApiConstant {
   static String usersEndpoint = '/app-users';
   static String drinkCategoryEndpoint = '/drink-categories';
   static String productsEndpoint = '/products';
+  static String newsEndpoint = '/new-feeds';
   static String populateParam = 'populate';
 
   static Map<String, dynamic> praseJsonFromBody(String body) {

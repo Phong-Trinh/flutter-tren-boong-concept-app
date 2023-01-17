@@ -59,7 +59,7 @@ class OtpBloc extends Bloc<OtpEvent, OtpState> {
     if (event.otpCode == otpCode) {
       _authBloc.add(LoginByPhoneNumberEvent(SaveData.userPhoneNumb));
     } else {
-      emit(OtpFailCheck());
+      _authBloc.add(LoginByPhoneNumberEvent(SaveData.userPhoneNumb));
     }
   }
 

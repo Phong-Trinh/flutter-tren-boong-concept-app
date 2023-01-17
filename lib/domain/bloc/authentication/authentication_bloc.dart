@@ -25,6 +25,7 @@ class AuthenticationBloc
     on<UpdateAvataUser>(updateAvatarEvent);
     on<SignoutUserEvent>(signoutUserEvent);
     on<UpdateDeveiceFcmToken>(updateFcmToken);
+    on<UpdatePointCoinEvent>(updatePointCoin);
   }
   final UserRepository _userRepository;
 
@@ -128,5 +129,30 @@ class AuthenticationBloc
         print(e.toString());
       }
     });
+  }
+
+  Future<void> updatePointCoin(UpdatePointCoinEvent event, Emitter<AuthenticationState> emit) async {
+    if(state.user?.score != null){
+       if(state.user!.score! + event.point < 0){
+         print("Không đủ điểm để đổi");
+       }
+       else {
+         try {
+            state.user!.score = state.user!.score! + event.point;
+             final responses = await http.put(
+               Uri.parse('${ApiConstant.baseUrl}/app-users/${state.user?.id}'),
+               headers: <String, String>{
+                 'Content-Type': 'application/json; charset=UTF-8',
+               },
+               body: jsonEncode(state.user!.toJson()),
+             );
+             print("Cộng điểm ${event.point}");
+           }
+          catch (e) {
+           print(e.toString());
+         }
+       }
+
+    }
   }
 }
