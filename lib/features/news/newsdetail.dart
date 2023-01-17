@@ -36,29 +36,6 @@ class NewsDetail extends StatelessWidget {
               ),
             ],
           );
-          //return Dialog(
-          //         child: Column(
-          //           mainAxisAlignment: MainAxisAlignment.start,
-          //           children: [
-          //             const Text(
-          //               'Nội dung sự kiện',
-          //               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-          //             ),
-          //             NewsInfor(
-          //               title: news.title,
-          //               details: [news.content],
-          //             ),
-          //             TextButton(
-          //               child: const Text('Đóng',
-          //                   style:
-          //                       TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-          //               onPressed: () {
-          //                 Navigator.of(context).pop();
-          //               },
-          //             ),
-          //           ],
-          //         ),
-          //       );
         },
       );
     }

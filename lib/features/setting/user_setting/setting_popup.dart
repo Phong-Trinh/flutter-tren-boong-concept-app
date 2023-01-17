@@ -268,9 +268,6 @@ class _SettingPopupState extends State<SettingPopup> {
                                 const Divider(
                                   color: Colors.brown,
                                 ),
-                                const Divider(
-                                  color: Colors.brown,
-                                ),
                                 ListTile(
                                   onTap: () {
                                     _showMyDialog();
