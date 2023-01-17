@@ -12,7 +12,7 @@ class NewsDate extends StatelessWidget {
         height: 45,
         child: Row(
           children: [
-            Text(date,
+            Text(date.substring(0,10),
                 style: TextStyle(
                     fontWeight: FontWeight.w700,
                     wordSpacing: 1.6,
